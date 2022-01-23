@@ -5,23 +5,17 @@
 ![Gitlab code coverage](https://img.shields.io/gitlab/coverage/luxater/specula/main?label=Coverage&style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
+[Releases](https://gitlab.com/luxater/specula/-/releases) ·
+[Issues](https://gitlab.com/luxater/specula/-/issues/new) ·
+[Documentation](https://luxater.gitlab.io/specula/)
+
 ## About the Project
-
-### Built With
-
-- [Catch2](https://github.com/catchorg/Catch2): A modern, C++-native, test framework for unit-tests, TDD and BDD
-- [argparse](https://github.com/p-ranav/argparse): Argument Parser for Modern C++
-- [fmt](https://github.com/fmtlib/fmt): A modern formatting library
-- [magic_enum](https://github.com/Neargye/magic_enum): Static reflection for enums for modern C++
-- [namof](https://github.com/Neargye/nameof): Nameof operator for modern C++
-- [semver](https://github.com/Neargye/semver): Semantic Versioning for modern C++
-- [spdlog](https://github.com/gabime/spdlog): Fast C++ logging library
 
 ## Getting Started
 
 ## Usage
 
-_For more examples, please refer to the [Documentation](https://github.com/Nedra1998/Specula/tree/main/docs)_
+_For more examples, please refer to the [Documentation](https://luxater.gitlab.io/specula/)_
 
 ## Contributing
 
@@ -42,5 +36,5 @@ appreciated**.
 ## License
 
 Distributed under the MIT license. See
-[`LICENSE.md`](https://github.com/Nedra1998/Specula/blob/development/LICENSE.md)
-for more information.
+[`LICENSE.md`](https://gitlab.com/luxater/specula/-/blob/main/LICENSE.md) for
+more information.
