@@ -4,6 +4,7 @@ cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 project(
   Specula
   VERSION 0.1.0
+  DESCRIPTION "C++17 Pathtracing Renderer"
   LANGUAGES C CXX)
 
 # --- Include Guard ---
@@ -60,6 +61,7 @@ endif()
 # --- Options ---
 
 option(SPECULA_BUILD_TESTING "Enable local unit tests" ${SPECULA_MAIN_PROJECT})
+option(SPECULA_BUILD_DOCUMENTATION "Enable documentation generation" ${SPECULA_MAIN_PROJECT})
 
 if(SPECULA_BUILD_TESTING)
   include(CTest)
@@ -83,6 +85,10 @@ list(APPEND CMAKE_MODULE_PATH "${Catch2_SOURCE_DIR}/extras")
 
 add_subdirectory(src)
 add_subdirectory(app)
+
+if(SPECULA_BUILD_DOCUMENTATION)
+  add_subdirectory(docs)
+endif()
 
 if(SPECULA_BUILD_TESTING)
   add_subdirectory(tests)
