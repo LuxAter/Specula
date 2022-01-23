@@ -7,6 +7,7 @@ stages:
 
 compile:
     stage: build
+    image: gcc
     before_script:
         - apk update && apk add cmake make gcc ccache
         - mkdir -p ccache
@@ -37,6 +38,7 @@ docs:
 
 test:
     stage: test
+    image: gcc
     script:
         - make --build build/ --config Debug --target test
     dependencies:
