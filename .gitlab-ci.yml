@@ -35,7 +35,8 @@ docs:
 test:
     stage: test
     before_script:
-        - pip install gcovr
+        - apt update && apt -y install python3-pip
+        - pip3 install gcovr
     script:
         - ./build/tests/unit-tests --reporter console::- --reporter JUnit::results-junit.xml
         - gcovr --xml-pretty --exclude-unreachable-branches --print-summary -o coverage.xml --root ${CI_PROJECT_DIR} --object-directory ${CI_PROJECT_DIR}/build --exclude ${CI_PROJECT_DIR}/tests --exclude ${CI_PROJECT_DIR}/app
@@ -54,7 +55,7 @@ pages:
     stage: deploy
     script:
         - mkdir public
-        - cp -r build/docs/html public
+        - cp -r build/docs/html/* public
     artifacts:
         paths:
             - public
