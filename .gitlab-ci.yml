@@ -38,7 +38,7 @@ test:
         - apt update && apt -y install python3-pip
         - pip3 install gcovr
     script:
-        - ./build/tests/unit-tests --reporter console::- --reporter JUnit::results-junit.xml
+        - ./build/tests/unit-tests --reporter console::- --reporter JUnit::report.xml
         - gcovr --xml-pretty --exclude-unreachable-branches --print-summary -o coverage.xml --root ${CI_PROJECT_DIR} --object-directory ${CI_PROJECT_DIR}/build --exclude ${CI_PROJECT_DIR}/tests --exclude ${CI_PROJECT_DIR}/app
     coverage: /^\s*lines:\s*\d+.\d+\%/
     artifacts:
