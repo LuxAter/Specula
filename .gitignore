@@ -3,6 +3,7 @@
 build*/
 
 # Cache
+.cache_ggshield
 .cache/
 
 ### C++

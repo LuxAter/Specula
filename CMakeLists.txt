@@ -14,6 +14,10 @@ if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
   )
 endif()
 
+if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
+  set(SPECULA_MAIN_PROJECT TRUE)
+endif()
+
 # --- Setup ---
 
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
@@ -55,7 +59,7 @@ endif()
 
 # --- Options ---
 
-option(SPECULA_BUILD_TESTING "Enable local unit tests")
+option(SPECULA_BUILD_TESTING "Enable local unit tests" ${SPECULA_MAIN_PROJECT})
 
 if(SPECULA_BUILD_TESTING)
   include(CTest)
@@ -63,14 +67,15 @@ endif()
 
 # --- Dependencies ---
 
-include(CPM)
-cpmaddpackage("gh:fmtlib/fmt#8.1.1")
-cpmaddpackage("gh:gabime/spdlog#v1.9.2")
-cpmaddpackage("gh:catchorg/Catch2#v3.0.0-preview4")
-cpmaddpackage("gh:p-ranav/argparse#master")
-cpmaddpackage("gh:Neargye/magic_enum#master")
-cpmaddpackage("gh:Neargye/nameof#master")
-cpmaddpackage("gh:Neargye/semver#feature/enhanced_version")
+include(cmake/CPM.cmake)
+CPMAddPackage("gh:Neargye/magic_enum#master")
+CPMAddPackage("gh:Neargye/nameof#master")
+CPMAddPackage("gh:Neargye/semver#feature/enhanced_version")
+CPMAddPackage("gh:agauniyal/rang#v3.2")
+CPMAddPackage("gh:catchorg/Catch2#v3.0.0-preview4")
+CPMAddPackage("gh:fmtlib/fmt#8.1.1")
+CPMAddPackage("gh:gabime/spdlog#v1.9.2")
+CPMAddPackage("gh:p-ranav/argparse#master")
 
 list(APPEND CMAKE_MODULE_PATH "${Catch2_SOURCE_DIR}/extras")
 
