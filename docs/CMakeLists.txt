@@ -1,4 +1,4 @@
-find_package(Doxygen REQUIRED dot)
+find_package(Doxygen QUIET)
 
 if(DOXYGEN_FOUND)
   file(GLOB_RECURSE HEADERS CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/include/*")
