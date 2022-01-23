@@ -1,0 +1,41 @@
+image: gcc
+
+stages:
+  - build
+  - test
+  - deploy
+
+Compile:
+    stage: build
+    before_script:
+        - apt update && apt -y install cmake make
+    script:
+        - cmake -B build/ -DCMAKE_BUILD_TYPE=Debug
+        - cmake --build build/ --config Debug
+    artifacts:
+        paths:
+            - build/
+    cache:
+        paths:
+            - "*.o"
+
+Docs:
+    stage: build
+    before_script:
+        - apt update && apt -y install cmake make doxygen graphviz
+    script:
+        - cmake -B build -DCMAKE_BUILD_TYPE=Debug
+        - cmake --build build/ --config Debug --target docs
+    artifacts:
+        paths:
+            - build/docs/html
+
+
+# run tests using the binary built before
+Test:
+    stage: test
+    script:
+        - make --build build/ --config Debug --target test
+    dependencies:
+        - Compile
+
