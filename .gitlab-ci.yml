@@ -8,9 +8,10 @@ compile:
         - export CCACHE_BASEDIR=$(PWD)
         - export CCACHE_DIR=$(PWD)/ccache
     script:
-        - cmake -B build/ -DCMAKE_BUILD_TYPE=Debug
+        - cmake -B build/ -DCMAKE_BUILD_TYPE=Debug -DSPECULA_COVERAGE=TRUE
         - cmake --build build/ --config Debug
     artifacts:
+        expire_in: 2 hours
         paths:
             - build/
     cache:
@@ -26,14 +27,24 @@ docs:
         - cmake -B build -DCMAKE_BUILD_TYPE=Debug
         - cmake --build build/ --config Debug --target docs
     artifacts:
+        expire_in: 2 hours
         paths:
             - build/docs/html
 
 
 test:
     stage: test
+    before_script:
+        - pip install gcovr
     script:
-        - make --build build/ --config Debug --target test
+        - ./build/tests/unit-tests --reporter console::- --reporter JUnit::results-junit.xml
+        - gcovr --xml-pretty --exclude-unreachable-branches --print-summary -o coverage.xml --root ${CI_PROJECT_DIR} --object-directory ${CI_PROJECT_DIR}/build --exclude ${CI_PROJECT_DIR}/tests --exclude ${CI_PROJECT_DIR}/app
+    coverage: /^\s*lines:\s*\d+.\d+\%/
+    artifacts:
+        when: always
+        reports:
+            junit: report.xml
+            cobertura: coverage.xml
     dependencies:
         - compile
     needs:
