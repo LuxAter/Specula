@@ -1,14 +1,17 @@
-image: gcc
+image: alpine
 
 stages:
   - build
   - test
   - deploy
 
-Compile:
+compile:
     stage: build
     before_script:
-        - apt update && apt -y install cmake make
+        - apk update && apk add cmake make gcc ccache
+        - mkdir -p ccache
+        - export CCACHE_BASEDIR=$(PWD)
+        - export CCACHE_DIR=$(PWD)/ccache
     script:
         - cmake -B build/ -DCMAKE_BUILD_TYPE=Debug
         - cmake --build build/ --config Debug
@@ -18,11 +21,12 @@ Compile:
     cache:
         paths:
             - "*.o"
+            - ccache/
 
-Docs:
+docs:
     stage: build
     before_script:
-        - apt update && apt -y install cmake make doxygen graphviz
+        - apk update && apk add cmake make doxygen graphviz
     script:
         - cmake -B build -DCMAKE_BUILD_TYPE=Debug
         - cmake --build build/ --config Debug --target docs
@@ -31,11 +35,26 @@ Docs:
             - build/docs/html
 
 
-# run tests using the binary built before
-Test:
+test:
     stage: test
     script:
         - make --build build/ --config Debug --target test
     dependencies:
-        - Compile
+        - compile
+    needs:
+        - compile
 
+pages:
+    stage: deploy
+    script:
+        - mkdir public
+        - cp -r build/docs/html public
+    artifacts:
+        paths:
+            - public
+    dependencies:
+        - docs
+    needs:
+        - docs
+    rules:
+        - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
