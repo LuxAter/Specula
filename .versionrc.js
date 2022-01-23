@@ -22,7 +22,7 @@ module.exports = {
   types: [
     {
       type: "build",
-      section: "Features",
+      hidden: true,
     },
     {
       type: "ci",
@@ -34,11 +34,11 @@ module.exports = {
     },
     {
       type: "docs",
-      hidden: true,
+      section: "Documentation",
     },
     {
       type: "feat",
-      hidden: true,
+      section: "Feature",
     },
     {
       type: "fix",
@@ -54,7 +54,7 @@ module.exports = {
     },
     {
       type: "revert",
-      hidden: true,
+      section: "Revert",
     },
     {
       type: "style",
