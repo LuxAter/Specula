@@ -1,12 +1,9 @@
 # Specula
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Nedra1998/Specula/CI?label=Build&style=flat-square)
-![Codecov](https://img.shields.io/codecov/c/github/Nedra1998/Specula?label=Coverage&style=flat-square)
-![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/Nedra1998/Specula?label=Tag&style=flat-square)
-![GitHub all releases](https://img.shields.io/github/downloads/Nedra1998/Specula/total?label=Downloads&style=flat-square)
-![GitHub issues](https://img.shields.io/github/issues/Nedra1998/Specula?label=Issues&style=flat-square)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Nedra1998/Specula?label=Commit%20Activity&style=flat-square)
-![GitHub](https://img.shields.io/github/license/Nedra1998/Specula?label=License&style=flat-square)
+![GitLab tag (latest by SemVer)](https://img.shields.io/gitlab/v/tag/luxater/specula?label=Tag&style=flat-square)
+![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline-status/luxater/specula?branch=main&label=Build&style=flat-square)
+![Gitlab code coverage](https://img.shields.io/gitlab/coverage/luxater/specula/main?label=Coverage&style=flat-square)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
 ## About the Project
 
