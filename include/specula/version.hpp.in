@@ -1,11 +1,10 @@
-#ifndef VERSION_HPP_
-#define VERSION_HPP_
+#ifndef SPECULA_VERSION_HPP_
+#define SPECULA_VERSION_HPP_
 
 #include <semver.hpp>
 
-namespace specula
-{
-inline constexpr auto version = semver::version{@PROJECT_VERSION_MAJOR@, @PROJECT_VERSION_MINOR@, @PROJECT_VERSION_PATCH@, {}, "@PROJECT_VERSION_COMMIT@"};
+namespace specula {
+inline constexpr auto version = semver::version{@PROJECT_VERSION_MAJOR@, @PROJECT_VERSION_MINOR@, @PROJECT_VERSION_PATCH@, {}, "@PROJECT_VERSION_BUILD@"};
 }
 
-#endif /* end of include guard: VERSION_HPP_ */
+#endif // SPECULA_VERSION_HPP_

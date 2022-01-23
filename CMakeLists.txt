@@ -21,11 +21,16 @@ list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 include(SetDefaultBuildType)
 set_default_build_type(Debug)
 
-if (EXISTS "${PROJECT_SOURCE_DIR}/.git")
+if(EXISTS "${PROJECT_SOURCE_DIR}/.git")
   include(GetGitRevisionDescription)
 
-  get_git_head_revision(A B)
-  message("${A} : ${B}")
+  get_git_head_revision(_ GIT_COMMIT)
+  git_local_changes(GIT_STATUS)
+
+  string(SUBSTRING "${GIT_COMMIT}" 0 7 PROJECT_VERSION_BUILD)
+  if(GIT_STATUS STREQUAL "DIRTY")
+    set(PROJECT_VERSION_BUILD "${PROJECT_VERSION_BUILD}-dirty")
+  endif()
 endif()
 
 find_program(CCACHE_PROGRAM ccache)
