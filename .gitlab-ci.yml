@@ -1,15 +1,9 @@
-image: alpine
-
-stages:
-  - build
-  - test
-  - deploy
+image: gcc
 
 compile:
     stage: build
-    image: gcc
     before_script:
-        - apk update && apk add cmake make gcc ccache
+        - apt update && apt -y install cmake make gcc ccache
         - mkdir -p ccache
         - export CCACHE_BASEDIR=$(PWD)
         - export CCACHE_DIR=$(PWD)/ccache
@@ -27,7 +21,7 @@ compile:
 docs:
     stage: build
     before_script:
-        - apk update && apk add cmake make doxygen graphviz
+        - apt update && apt -y install cmake make doxygen graphviz
     script:
         - cmake -B build -DCMAKE_BUILD_TYPE=Debug
         - cmake --build build/ --config Debug --target docs
@@ -38,7 +32,6 @@ docs:
 
 test:
     stage: test
-    image: gcc
     script:
         - make --build build/ --config Debug --target test
     dependencies:
