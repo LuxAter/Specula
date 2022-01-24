@@ -15,9 +15,11 @@ dependencies used in this project.
 
 ### Internal Dependencies
 
-- [argparse](https://github.com/p-ranav/argparse): Argument Parser for Modern
-  C++
+- [cxxopts](https://github.com/jarro2783/cxxopts): Lightweight C++ command line
+  option parser
 - [{fmt}](https://github.com/fmtlib/fmt): A modern formatting library
+- [infoware](https://github.com/ThePhD/infoware): C++ Library for pulling
+  system and hardware information, without hitting the command line
 - [Magic Enum C++](https://github.com/Neargye/magic_enum): Static reflection
   for enums (to string, from string, iteration) for modern C++, work with any
   enum type without any macro or boilerplate code
@@ -26,6 +28,8 @@ dependencies used in this project.
 - [Semantic Versioning C++](https://github.com/Neargye/semver): Semantic
   Versioning for modern C++
 - [spdlog](https://github.com/gabime/spdlog): Fast C++ logging library
+- [TOML++](https://github.com/marzer/tomlplusplus/): Header-only TOML config
+  file parser and serializer for C++17
 
 ### Testing Dependencies
 

@@ -5,7 +5,8 @@ project(
   Specula
   VERSION 0.1.0
   DESCRIPTION "C++17 Pathtracing Renderer"
-  LANGUAGES C CXX)
+  LANGUAGES C CXX
+)
 
 # --- Include Guard ---
 if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
@@ -51,16 +52,16 @@ if("${CMAKE_BUILD_TYPE}" MATCHES "Debug|RelWithDebInfo")
   set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
   if(NOT EXISTS "${PROJECT_SOURCE_DIR}/compile_commands.json")
     execute_process(
-      COMMAND
-        ${CMAKE_COMMAND} -E create_symlink
-        "${PROJECT_BINARY_DIR}/compile_commands.json"
-        "${PROJECT_SOURCE_DIR}/compile_commands.json")
+      COMMAND ${CMAKE_COMMAND} -E create_symlink "${PROJECT_BINARY_DIR}/compile_commands.json"
+              "${PROJECT_SOURCE_DIR}/compile_commands.json"
+    )
   endif()
 endif()
 
 # --- Options ---
 
 option(SPECULA_BUILD_TESTING "Enable local unit tests" ${SPECULA_MAIN_PROJECT})
+option(SPECULA_ENABLE_COVERAGE "Enable test coverage reporting" OFF)
 option(SPECULA_BUILD_DOCUMENTATION "Enable documentation generation" ${SPECULA_MAIN_PROJECT})
 
 if(SPECULA_BUILD_TESTING)
@@ -68,6 +69,13 @@ if(SPECULA_BUILD_TESTING)
 endif()
 
 # --- Dependencies ---
+
+find_package(OpenCL QUIET)
+if(OpenCL_FOUND)
+  set(SPECULA_HAS_OPENCL ON)
+else()
+  set(SPECULA_HAS_OPENCL OFF)
+endif()
 
 include(cmake/CPM.cmake)
 CPMAddPackage("gh:Neargye/magic_enum#master")
@@ -78,6 +86,14 @@ CPMAddPackage("gh:catchorg/Catch2#v3.0.0-preview4")
 CPMAddPackage("gh:fmtlib/fmt#8.1.1")
 CPMAddPackage("gh:gabime/spdlog#v1.9.2")
 CPMAddPackage("gh:p-ranav/argparse#master")
+CPMAddPackage("gh:jarro2783/cxxopts#v3.0.0")
+CPMAddPackage("gh:marzer/tomlplusplus#v3.0.1")
+CPMAddPackage(
+  NAME infoware
+  GIT_TAG main
+  GITHUB_REPOSITORY ThePhD/infoware
+  OPTIONS "INFOWARE_USE_OPENCL ${SPECULA_HAS_OPENCL}"
+)
 
 list(APPEND CMAKE_MODULE_PATH "${Catch2_SOURCE_DIR}/extras")
 

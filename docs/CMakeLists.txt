@@ -3,14 +3,12 @@ find_package(Doxygen QUIET)
 if(DOXYGEN_FOUND)
   file(GLOB_RECURSE HEADERS CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/include/*")
   file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/src/*")
-  file(GLOB_RECURSE GENERATED_HEADERS CONFIGURE_DEPENDS
-       "${PROJECT_BINARY_DIR}/include/*")
-  file(GLOB_RECURSE DOCUMENTATION CONFIGURE_DEPENDS
-       "${CMAKE_CURRENT_SOURCE_DIR}/*.md")
+  file(GLOB_RECURSE GENERATED_HEADERS CONFIGURE_DEPENDS "${PROJECT_BINARY_DIR}/include/*")
+  file(GLOB_RECURSE DOCUMENTATION CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/*.md")
 
-  set(SPECIAL_DOCS
-      "${PROJECT_SOURCE_DIR}/README.md" "${PROJECT_SOURCE_DIR}/LICENSE.md"
-      "${PROJECT_SOURCE_DIR}/CHANGELOG.md")
+  set(SPECIAL_DOCS "${PROJECT_SOURCE_DIR}/README.md" "${PROJECT_SOURCE_DIR}/LICENSE.md"
+                   "${PROJECT_SOURCE_DIR}/CHANGELOG.md"
+  )
 
   set(DOXYGEN_STRIP_FROM_PATH "${PROJECT_SOURCE_DIR}")
   set(DOXYGEN_STRIP_FROM_INC "${PROJECT_SOURCE_DIR}/include/specula")
@@ -19,26 +17,25 @@ if(DOXYGEN_FOUND)
   set(DOXYGEN_GENERATE_TREEVIEW YES)
   set(DOXYGEN_HTML_EXTRA_STYLESHEET
       "${CMAKE_CURRENT_SOURCE_DIR}/assets/doxygen-awesome.css"
-      "${CMAKE_CURRENT_SOURCE_DIR}/assets/doxygen-awesome-sidebar-only.css")
+      "${CMAKE_CURRENT_SOURCE_DIR}/assets/doxygen-awesome-sidebar-only.css"
+  )
   set(DOXYGEN_HTML_EXTRA_FILES
       "${CMAKE_CURRENT_SOURCE_DIR}/assets/file-alt-solid.svg"
       "${CMAKE_CURRENT_SOURCE_DIR}/assets/folder-solid.svg"
-      "${CMAKE_CURRENT_SOURCE_DIR}/assets/folder-open-solid.svg")
+      "${CMAKE_CURRENT_SOURCE_DIR}/assets/folder-open-solid.svg"
+  )
 
   if(${DOXYGEN_VERSION} VERSION_GREATER_EQUAL 1.9.2)
-    list(
-      APPEND
-      DOXYGEN_HTML_EXTRA_STYLESHEET
-      "${CMAKE_CURRENT_SOURCE_DIR}/assets/doxygen-awesome-sidebar-only-darkmode-toggle.css"
+    list(APPEND DOXYGEN_HTML_EXTRA_STYLESHEET
+         "${CMAKE_CURRENT_SOURCE_DIR}/assets/doxygen-awesome-sidebar-only-darkmode-toggle.css"
     )
-    list(
-      APPEND DOXYGEN_HTML_EXTRA_FILES
-      "${CMAKE_CURRENT_SOURCE_DIR}/assets/doxygen-awesome-darkmode-toggle.js")
+    list(APPEND DOXYGEN_HTML_EXTRA_FILES
+         "${CMAKE_CURRENT_SOURCE_DIR}/assets/doxygen-awesome-darkmode-toggle.js"
+    )
     set(DOXYGEN_HTML_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/assets/header.html")
     set(DOXYGEN_HTML_FOOTER "${CMAKE_CURRENT_SOURCE_DIR}/assets/footer.html")
   else()
-    set(DOXYGEN_HTML_HEADER
-        "${CMAKE_CURRENT_SOURCE_DIR}/assets/header-old.html")
+    set(DOXYGEN_HTML_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/assets/header-old.html")
   endif()
 
   set(DOXYGEN_FILE_VERSION_FILTER "git log -n 1 --pretty=format:%h --")
@@ -56,5 +53,6 @@ if(DOXYGEN_FOUND)
     ${SOURCES}
     ${GENERATED_HEADERS}
     ${DOCUMENTATION}
-    USE_STAMP_FILE)
+    USE_STAMP_FILE
+  )
 endif()

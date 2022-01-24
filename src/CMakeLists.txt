@@ -1,8 +1,7 @@
-include(EnableExtraCompilerWarnings)
-include(EnableCoverage)
-
-configure_file("${PROJECT_SOURCE_DIR}/include/specula/version.hpp.in"
-               "${PROJECT_BINARY_DIR}/include/specula/version.hpp" @ONLY)
+configure_file(
+  "${PROJECT_SOURCE_DIR}/include/specula/version.hpp.in"
+  "${PROJECT_BINARY_DIR}/include/specula/version.hpp" @ONLY
+)
 
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
 list(APPEND SOURCES "${PROJECT_BINARY_DIR}/include/specula/version.hpp")
@@ -10,14 +9,20 @@ list(APPEND SOURCES "${PROJECT_BINARY_DIR}/include/specula/version.hpp")
 add_library(specula STATIC ${SOURCES})
 add_library(specula::specula ALIAS specula)
 
-target_compile_features(specula PUBLIC cxx_std_20)
+target_compile_features(specula PUBLIC cxx_std_17)
 
 target_link_libraries(specula PUBLIC semver::semver spdlog::spdlog fmt::fmt)
 
 target_include_directories(
   specula
   PUBLIC "${PROJECT_BINARY_DIR}/include" "${PROJECT_SOURCE_DIR}/include"
-  PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}" "${PROJECT_SOURCE_DIR}/include/specula")
+  PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}" "${PROJECT_SOURCE_DIR}/include/specula"
+)
 
+include(EnableExtraCompilerWarnings)
 enable_extra_compiler_warnings(specula)
-enable_coverage(specula)
+
+if(SPECULA_ENABLE_COVERAGE)
+  include(EnableCoverage)
+  enable_coverage(specula)
+endif()
