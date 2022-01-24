@@ -1,67 +1,69 @@
 image: gcc
 
 compile:
-    stage: build
-    before_script:
-        - apt update && apt -y install cmake make gcc ccache
-        - mkdir -p ccache
-        - export CCACHE_BASEDIR=${CI_PROJECT_DIR}
-        - export CCACHE_DIR=${CI_PROJECT_DIR}/ccache
-    script:
-        - cmake -B build/ -DCMAKE_BUILD_TYPE=Debug -DSPECULA_COVERAGE=TRUE
-        - cmake --build build/ --config Debug
-    artifacts:
-        expire_in: 2 hours
-        paths:
-            - build/
-    cache:
-        paths:
-            - "*.o"
-            - ${CI_PROJECT_DIR}/ccache/
+  stage: build
+  before_script:
+    - apt update && apt -y install cmake make gcc ccache
+    - mkdir -p ccache
+    - export CCACHE_BASEDIR=${CI_PROJECT_DIR}
+    - export CCACHE_DIR=${CI_PROJECT_DIR}/ccache
+  script:
+    - cmake -B build/ -DCMAKE_BUILD_TYPE=Debug -DSPECULA_BUILD_TESTING -DSPECULA_ENABLE_COVERAGE=TRUE
+    - cmake --build build/ --config Debug
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - build/
+  cache:
+    paths:
+      - "*.o"
+      - ${CI_PROJECT_DIR}/ccache/
 
 docs:
-    stage: build
-    before_script:
-        - apt update && apt -y install cmake make doxygen graphviz
-    script:
-        - cmake -B build -DCMAKE_BUILD_TYPE=Debug
-        - cmake --build build/ --config Debug --target docs
-    artifacts:
-        expire_in: 2 hours
-        paths:
-            - build/docs/html
-
+  stage: build
+  before_script:
+    - apt update && apt -y install cmake make doxygen graphviz
+  script:
+    - cmake -B build -DCMAKE_BUILD_TYPE=Debug -DSPECULA_BUILD_DOCUMENTATION
+    - cmake --build build/ --config Debug --target docs
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - build/docs/html
 
 test:
-    stage: test
-    before_script:
-        - apt update && apt -y install python3-pip
-        - pip3 install gcovr
-    script:
-        - ./build/tests/unit-tests --reporter console::- --reporter JUnit::report.xml
-        - gcovr --xml-pretty --exclude-unreachable-branches --print-summary -o coverage.xml --root ${CI_PROJECT_DIR} --object-directory ${CI_PROJECT_DIR}/build --exclude ${CI_PROJECT_DIR}/tests --exclude ${CI_PROJECT_DIR}/app
-    coverage: /^\s*lines:\s*\d+.\d+\%/
-    artifacts:
-        when: always
-        reports:
-            junit: report.xml
-            cobertura: coverage.xml
-    dependencies:
-        - compile
-    needs:
-        - compile
+  stage: test
+  before_script:
+    - apt update && apt -y install python3-pip
+    - pip3 install gcovr
+  script:
+    - ./build/tests/unit-tests --reporter console::- --reporter JUnit::report.xml
+    - gcovr --xml-pretty --exclude-unreachable-branches --print-summary -o coverage.xml --root ${CI_PROJECT_DIR} --object-directory ${CI_PROJECT_DIR}/build --exclude ${CI_PROJECT_DIR}/tests --exclude ${CI_PROJECT_DIR}/app
+    - bash <(curl -s https://codecov.io/bash) -f coverage.info || echo "Codecov did not collect coverage reports"
+  coverage: /^\s*lines:\s*\d+.\d+\%/
+  artifacts:
+    expire_in: 1 week
+    when: always
+    reports:
+      junit: report.xml
+      cobertura: coverage.xml
+  dependencies:
+    - compile
+  needs:
+    - compile
 
 pages:
-    stage: deploy
-    script:
-        - mkdir public
-        - cp -r build/docs/html/* public
-    artifacts:
-        paths:
-            - public
-    dependencies:
-        - docs
-    needs:
-        - docs
-    rules:
-        - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  stage: deploy
+  script:
+    - mkdir public
+    - cp -r build/docs/html/* public
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - public
+  dependencies:
+    - docs
+  needs:
+    - docs
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
