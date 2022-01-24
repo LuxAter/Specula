@@ -8,7 +8,7 @@ compile:
     - export CCACHE_BASEDIR=${CI_PROJECT_DIR}
     - export CCACHE_DIR=${CI_PROJECT_DIR}/ccache
   script:
-    - cmake -B build/ -DCMAKE_BUILD_TYPE=Debug -DSPECULA_BUILD_TESTING -DSPECULA_ENABLE_COVERAGE=TRUE
+    - cmake -B build/ -DCMAKE_BUILD_TYPE=Debug -DSPECULA_BUILD_TESTING=TRUE -DSPECULA_ENABLE_COVERAGE=TRUE
     - cmake --build build/ --config Debug
   artifacts:
     expire_in: 1 hour
@@ -24,7 +24,7 @@ docs:
   before_script:
     - apt update && apt -y install cmake make doxygen graphviz
   script:
-    - cmake -B build -DCMAKE_BUILD_TYPE=Debug -DSPECULA_BUILD_DOCUMENTATION
+    - cmake -B build -DCMAKE_BUILD_TYPE=Debug -DSPECULA_BUILD_DOCUMENTATION=TRUE
     - cmake --build build/ --config Debug --target docs
   artifacts:
     expire_in: 1 hour
