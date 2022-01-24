@@ -19,20 +19,35 @@ if(DOXYGEN_FOUND)
   set(DOXYGEN_GENERATE_TREEVIEW YES)
   set(DOXYGEN_HTML_EXTRA_STYLESHEET
       "${CMAKE_CURRENT_SOURCE_DIR}/assets/doxygen-awesome.css"
-      "${CMAKE_CURRENT_SOURCE_DIR}/assets/doxygen-awesome-sidebar-only.css"
-      "${CMAKE_CURRENT_SOURCE_DIR}/assets/doxygen-awesome-sidebar-only-darkmode-toggle.css"
-  )
+      "${CMAKE_CURRENT_SOURCE_DIR}/assets/doxygen-awesome-sidebar-only.css")
   set(DOXYGEN_HTML_EXTRA_FILES
-      "${CMAKE_CURRENT_SOURCE_DIR}/assets/doxygen-awesome-darkmode-toggle.js")
-  set(DOXYGEN_HTML_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/assets/header.html")
+      "${CMAKE_CURRENT_SOURCE_DIR}/assets/file-alt-solid.svg"
+      "${CMAKE_CURRENT_SOURCE_DIR}/assets/folder-solid.svg"
+      "${CMAKE_CURRENT_SOURCE_DIR}/assets/folder-open-solid.svg")
+
   if(${DOXYGEN_VERSION} VERSION_GREATER_EQUAL 1.9.2)
+    list(
+      APPEND
+      DOXYGEN_HTML_EXTRA_STYLESHEET
+      "${CMAKE_CURRENT_SOURCE_DIR}/assets/doxygen-awesome-sidebar-only-darkmode-toggle.css"
+    )
+    list(
+      APPEND DOXYGEN_HTML_EXTRA_FILES
+      "${CMAKE_CURRENT_SOURCE_DIR}/assets/doxygen-awesome-darkmode-toggle.js")
+    set(DOXYGEN_HTML_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/assets/header.html")
     set(DOXYGEN_HTML_FOOTER "${CMAKE_CURRENT_SOURCE_DIR}/assets/footer.html")
   else()
-    set(DOXYGEN_HTML_FOOTER
-        "${CMAKE_CURRENT_SOURCE_DIR}/assets/footer-dep.html")
+    set(DOXYGEN_HTML_HEADER
+        "${CMAKE_CURRENT_SOURCE_DIR}/assets/header-old.html")
   endif()
+
+  set(DOXYGEN_FILE_VERSION_FILTER "git log -n 1 --pretty=format:%h --")
   set(DOXYGEN_BUILTIN_STL_SUPPORT YES)
+  set(DOXYGEN_DOT_IMAGE_FORMAT svg)
   set(DOXYGEN_DOT_TRANSPARENT YES)
+  set(DOXYGEN_HTML_COLORSTYLE_HUE 209)
+  set(DOXYGEN_HTML_COLORSTYLE_SAT 255)
+  set(DOXYGEN_HTML_COLORSTYLE_GAMMA 113)
 
   doxygen_add_docs(
     docs

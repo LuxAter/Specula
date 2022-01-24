@@ -1375,8 +1375,43 @@ table.directory {
     margin-bottom: 0;
 }
 
+.iconfopen {
+    display: inline-block;
+    width: 19px;
+    height: 18px;
+    margin-right: 2px;
+    background-image: none;
+    background-color: var(--page-secondary-foreground-color);
+    -webkit-mask: url(/folder-open-solid.svg) no-repeat 100% 100%;
+    mask: url(/folder-open-solid.svg) no-repeat 100% 100%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+}
+
+.iconfclosed {
+    display: inline-block;
+    width: 19px;
+    height: 18px;
+    margin-right: 2px;
+    background-image: none;
+    background-color: var(--page-secondary-foreground-color);
+    -webkit-mask: url(/folder-solid.svg) no-repeat 100% 100%;
+    mask: url(/folder-solid.svg) no-repeat 100% 100%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+}
+
 .icondoc {
-    filter: saturate(0.2);
+    display: inline-block;
+    width: 12px;
+    height: 16px;
+    margin-right: 2px;
+    background-image: none;
+    background-color: var(--page-secondary-foreground-color);
+    -webkit-mask: url(/file-alt-solid.svg) no-repeat 100% 100%;
+    mask: url(/file-alt-solid.svg) no-repeat 100% 100%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
 }
 
 @media screen and (max-width: 767px) {
@@ -1384,16 +1419,6 @@ table.directory {
         margin-left: calc(0px - var(--spacing-medium));
         margin-right: calc(0px - var(--spacing-medium));
     }
-}
-
-@media (prefers-color-scheme: dark) {
-    html:not(.light-mode) .iconfopen, html:not(.light-mode) .iconfclosed {
-        filter: hue-rotate(180deg) invert();
-    }
-}
-
-html.dark-mode .iconfopen, html.dark-mode .iconfclosed {
-    filter: hue-rotate(180deg) invert();
 }
 
 /*
@@ -1521,4 +1546,25 @@ doxygen-awesome-dark-mode-toggle:hover {
 
 doxygen-awesome-dark-mode-toggle:after {
     content: var(--darkmode-toggle-button-icon)
+}
+
+/*
+  Github corner
+ */
+
+.github-corner svg {
+    fill: var(--primary-light-color);
+    color: var(--page-background-color);
+    width: 72px;
+    height: 72px;
+}
+
+@media screen and (max-width: 767px) {
+    .github-corner svg {
+        width: 55px;
+        height: 55px;
+    }
+    #projectnumber {
+        margin-right: 22px;
+    }
 }
