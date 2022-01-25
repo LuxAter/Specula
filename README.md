@@ -1,12 +1,15 @@
 # Specula
 
-![GitLab tag (latest by SemVer)](https://img.shields.io/gitlab/v/tag/luxater/specula?label=Tag&style=flat-square)
-![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline-status/luxater/specula?branch=main&label=Build&style=flat-square)
-![Gitlab code coverage](https://img.shields.io/gitlab/coverage/luxater/specula/main?label=Coverage&style=flat-square)
-![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/LuxAter/Specula/CI?label=Build&style=flat-square)
+![Codecov](https://img.shields.io/codecov/c/github/LuxAter/Specula?label=Coverage&style=flat-square)
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/LuxAter/Specula?label=Tag&style=flat-square)
+![GitHub release (latest by SemVer)](https://img.shields.io/github/downloads/LuxAter/Specula/latest/total?label=Downloads&style=flat-square)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/LuxAter/Specula?label=Commit%20Activity&style=flat-square)
+![GitHub issues](https://img.shields.io/github/issues/LuxAter/Specula?label=Issues&style=flat-square)
+![GitHub](https://img.shields.io/github/license/LuxAter/Specula?label=License&style=flat-square)
 
-[Releases](https://gitlab.com/luxater/specula/-/releases) ·
-[Issues](https://gitlab.com/luxater/specula/-/issues/new) ·
+[Releases](https://github.com/LuxAter/Specula/releases) ·
+[Issues](https://github.com/LuxAter/Specula/issues) ·
 [Documentation](https://luxater.gitlab.io/specula/)
 
 ## About the Project
@@ -32,9 +35,3 @@ appreciated**.
 4. Commit your changes (`git commit -m "<my-commit-message>"`)
 5. Push to the branch (`git push origin feature/<my-feature>`)
 6. Open a pull request
-
-## License
-
-Distributed under the MIT license. See
-[`LICENSE.md`](https://gitlab.com/luxater/specula/-/blob/main/LICENSE.md) for
-more information.
