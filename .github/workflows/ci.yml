@@ -30,7 +30,7 @@ jobs:
         working-directory: ${{github.workspace}}/build
         run: ctest -C ${{env.BUILD_TYPE}} --output-on-failure
       - name: Generate Coverage Report
-        run: gcovr --xml-pretty --print-summary -o coverage.xml --root ${{github.workspace}} --object-directory ${{github.workspace}}/build --exclude ${{github.workspace}}/tests --exclude ${{github.workspace}}/app
+        run: gcovr --xml-pretty --print-summary -o coverage.xml --root ${{github.workspace}} --object-directory ${{github.workspace}}/build --exclude ${{github.workspace}}/build --exclude ${{github.workspace}}/tests --exclude ${{github.workspace}}/app
       - name: Upload Coverage Report
         uses: codecov/codecov-action@v2
         with:

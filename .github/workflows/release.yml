@@ -1,9 +1,9 @@
 name: Release
 
 on:
+  workflow_dispatch:
   push:
-    tags:
-      - '*'
+    tags: "v*"
 
 env:
   BUILD_TYPE: Release

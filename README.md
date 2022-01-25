@@ -10,7 +10,7 @@
 
 [Releases](https://github.com/LuxAter/Specula/releases) ·
 [Issues](https://github.com/LuxAter/Specula/issues) ·
-[Documentation](https://luxater.gitlab.io/specula/)
+[Documentation](https://luxater.github.io/Specula/)
 
 ## About the Project
 
@@ -18,7 +18,7 @@
 
 ## Usage
 
-_For more examples, please refer to the [Documentation](https://luxater.gitlab.io/specula/)_
+_For more examples, please refer to the [Documentation](https://luxater.github.io/Specula/)_
 
 ## Contributing
 
