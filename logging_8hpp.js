@@ -8,7 +8,6 @@ var logging_8hpp =
     [ "__LOG_S", "logging_8hpp.html#aa7164c0ecf1456e37762e8967c207869", null ],
     [ "__LOG_ST", "logging_8hpp.html#a3cf8087048c2923726c2cc6b953692d1", null ],
     [ "__LOG_T", "logging_8hpp.html#a5fac2d680e59c411d02c205a7b731969", null ],
-    [ "DEFAULT_LOGGER", "logging_8hpp.html#a8c7a288fea519c7e895518f8dff4888f", null ],
     [ "LCRITICAL", "logging_8hpp.html#ad754510c3081ff7c51d415a31679a737", null ],
     [ "LDEBUG", "logging_8hpp.html#a902c1d4e55816e7cf28d5a0478280b80", null ],
     [ "LERROR", "logging_8hpp.html#a46862db2e2ed7352d6dafc23304d2f97", null ],
@@ -33,6 +32,6 @@ var logging_8hpp =
     [ "LSWARN", "logging_8hpp.html#ac084234ed8c35e6025e62f32013eea0f", null ],
     [ "LTRACE", "logging_8hpp.html#ae7b3844b56e8b2bc907b084c2c5e4ae2", null ],
     [ "LWARN", "logging_8hpp.html#a299de690418fc27737bb88a3af321e9b", null ],
-    [ "get", "logging_8hpp.html#ac8b539f9fa2f07602ec6c5fb6cc12a2d", null ],
+    [ "get", "logging_8hpp.html#a3ee8171b6a7b2d03cfc2b634cac27075", null ],
     [ "sink", "logging_8hpp.html#a066ed122ff14b7016b5e86e7747464f8", null ]
 ];

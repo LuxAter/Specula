@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['get_40',['get',['../logging_8hpp.html#ac8b539f9fa2f07602ec6c5fb6cc12a2d',1,'specula::logging']]]
+  ['get_0',['get',['../logging_8hpp.html#a3ee8171b6a7b2d03cfc2b634cac27075',1,'specula::logging']]]
 ];
