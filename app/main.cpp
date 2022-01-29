@@ -9,7 +9,6 @@
 #include <unistd.h>
 #endif
 
-#include <cxxopts.hpp>
 #include <fmt/chrono.h>
 #include <fmt/core.h>
 #include <fmt/ranges.h>
@@ -18,6 +17,8 @@
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/sinks/stdout_sinks.h>
 #include <spdlog/spdlog.h>
+
+#include <cxxopts.hpp>
 #include <specula/logging.hpp>
 #include <specula/version.hpp>
 
@@ -35,7 +36,7 @@ using namespace specula;
 
 namespace cxxopts {
 class argument_invalid_choice : public cxxopts::OptionParseException {
-public:
+ public:
   explicit argument_invalid_choice(const std::string &option,
                                    const std::string &arg,
                                    const std::vector<std::string> &choices)
@@ -43,22 +44,22 @@ public:
             "Option {}{}{} invalid argument {}{}{} (choose from {})", LQUOTE,
             option, RQUOTE, LQUOTE, arg, RQUOTE, choices)) {}
 };
-} // namespace cxxopts
+}  // namespace cxxopts
 
 int main(int argc, char *argv[]) {
   try {
     cxxopts::Options options("Specula", "C++17 Pathtracing Renderer");
 
     // clang-format off
-  options.add_options()
-    ("h,help", "shows help messagne and exits")
-    ("v,version", "prints version information and exits")
-    ("V,verbose", "enable additional logging verbosity")
-    ("system-info", "prints systm information and exits",
-        cxxopts::value<std::string>()->implicit_value("toml"));
-
+    options.add_options()
+      ("h,help", "shows this help message and exits")
+      ("v,version", "prints version information and exits")
+      ("V,verbose", "enable additional logging verbosity");
+  
+    options.add_options("Command")
+      ("system-info", "prints system information and exits",
+          cxxopts::value<std::string>()->implicit_value("toml"));
     // clang-format on
-    //
 
     auto result = options.parse(argc, argv);
 
@@ -107,19 +108,19 @@ int main(int argc, char *argv[]) {
           new_sink = std::make_shared<spdlog::sinks::stdout_sink_mt>();
 
         switch (result.count("verbose")) {
-        case 0:
-          new_sink->set_level(spdlog::level::warn);
-          break;
-        case 1:
-          new_sink->set_level(spdlog::level::info);
-          break;
-        case 2:
-          new_sink->set_level(spdlog::level::debug);
-          break;
-        case 3:
-        default:
-          new_sink->set_level(spdlog::level::trace);
-          break;
+          case 0:
+            new_sink->set_level(spdlog::level::warn);
+            break;
+          case 1:
+            new_sink->set_level(spdlog::level::info);
+            break;
+          case 2:
+            new_sink->set_level(spdlog::level::debug);
+            break;
+          case 3:
+          default:
+            new_sink->set_level(spdlog::level::trace);
+            break;
         }
         if (use_color)
           new_sink->set_pattern(

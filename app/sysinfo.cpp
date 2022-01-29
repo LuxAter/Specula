@@ -1,13 +1,13 @@
 #include "sysinfo.hpp"
 
-#include <iostream>
-#include <string>
-#include <string_view>
+#include <toml++/toml.h>
 
 #include <infoware/infoware.hpp>
+#include <iostream>
 #include <magic_enum.hpp>
 #include <specula/logging.hpp>
-#include <toml++/toml.h>
+#include <string>
+#include <string_view>
 
 int specula::cli::sysinfo(std::string format) {
   transform(format.begin(), format.end(), format.begin(), ::tolower);

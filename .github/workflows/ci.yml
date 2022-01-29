@@ -28,15 +28,22 @@ jobs:
         uses: hendrikmuhs/ccache-action@v1
         with:
           key: ${{ runner.os }}-${{ env.BUILD_TYPE }}
+      - name: Setup CPM Cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/cpm_cache
+          key: ${{ runner.os }}-cpm-${{ hashFiles('**/') }}
+          restore-keys: |
+            ${{ runner.os }}-cpm-
       - name: Install Dependencies
         run: pip install gcovr
       - name: Configure CMake
-        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DSPECULA_BUILD_TESTING=TRUE -DSPECULA_ENABLE_COVERAGE=TRUE
+        run: cmake -B ${{ github.workspace }}/build -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} -DSPECULA_BUILD_TESTING=TRUE -DSPECULA_ENABLE_COVERAGE=TRUE -DCPM_SOURCE_CACHE=${{ github.workspace }}/cpm_cache
       - name: Build Tests
-        run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+        run: cmake --build ${{ github.workspace }}/build --config ${{ env.BUILD_TYPE }}
       - name: Run Test
-        working-directory: ${{github.workspace}}/build
-        run: ctest -C ${{env.BUILD_TYPE}} --output-on-failure
+        working-directory: ${{ github.workspace }}/build
+        run: ctest -C ${{ env.BUILD_TYPE }} --output-on-failure
       - name: Generate Coverage Report
         run: gcovr --xml-pretty --print-summary -o coverage.xml --root ${{github.workspace}} --object-directory ${{github.workspace}}/build --exclude ${{github.workspace}}/build --exclude ${{github.workspace}}/tests --exclude ${{github.workspace}}/app
       - name: Upload Coverage Report

@@ -5,6 +5,6 @@
 
 namespace specula::cli {
 int sysinfo(std::string format);
-} // namespace specula::cli
+}  // namespace specula::cli
 
-#endif // !SPECULA_SYSINFO_HPP_
+#endif  // !SPECULA_SYSINFO_HPP_

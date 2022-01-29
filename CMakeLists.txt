@@ -68,6 +68,10 @@ if(SPECULA_BUILD_TESTING)
   include(CTest)
 endif()
 
+if(NOT DEFINED CPM_USE_LOCAL_PACKAGES)
+  set(CPM_USE_LOCAL_PACKAGES TRUE)
+endif()
+
 # --- Dependencies ---
 
 find_package(OpenCL QUIET)
@@ -93,6 +97,12 @@ CPMAddPackage(
   GIT_TAG main
   GITHUB_REPOSITORY ThePhD/infoware
   OPTIONS "INFOWARE_USE_OPENCL ${SPECULA_HAS_OPENCL}"
+)
+CPMAddPackage(
+  NAME libpng
+  GIT_TAG libpng16
+  GITHUB_REPOSITORY glennrp/libpng
+  OPTIONS "PNG_EXECUTABLES NO" "PNG_TESTS NO"
 )
 
 list(APPEND CMAKE_MODULE_PATH "${Catch2_SOURCE_DIR}/extras")

@@ -3,4 +3,4 @@
 
 unsigned int Factorial(unsigned int number);
 
-#endif // !SPECULA_SPECULA_HPP_
+#endif  // !SPECULA_SPECULA_HPP_

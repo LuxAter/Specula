@@ -10,14 +10,14 @@
 #ifndef VISI_LOGGING_HPP_
 #define VISI_LOGGING_HPP_
 
-#include <memory>
-
 #include <fmt/chrono.h>
 #include <fmt/format.h>
 #include <fmt/ostream.h>
 #include <fmt/ranges.h>
 #include <spdlog/sinks/dist_sink.h>
 #include <spdlog/spdlog.h>
+
+#include <memory>
 
 #ifndef DEFAULT_LOGGER
 #define DEFAULT_LOGGER "specula"
@@ -31,9 +31,9 @@
  *
  * @see logging::get()
  */
-#define __LOG_LST(logger, timepoint, file, line, func, level, ...)             \
-  ::specula::logging::get(logger)->log(timepoint,                              \
-                                       spdlog::source_loc{file, line, func},   \
+#define __LOG_LST(logger, timepoint, file, line, func, level, ...)           \
+  ::specula::logging::get(logger)->log(timepoint,                            \
+                                       spdlog::source_loc{file, line, func}, \
                                        level, fmt::format(__VA_ARGS__))
 
 /**
@@ -44,8 +44,8 @@
  *
  * @see logging::get()
  */
-#define __LOG_LS(logger, file, line, func, level, ...)                         \
-  ::specula::logging::get(logger)->log(spdlog::source_loc{file, line, func},   \
+#define __LOG_LS(logger, file, line, func, level, ...)                       \
+  ::specula::logging::get(logger)->log(spdlog::source_loc{file, line, func}, \
                                        level, fmt::format(__VA_ARGS__))
 
 /**
@@ -55,9 +55,9 @@
  *
  * @see logging::get()
  */
-#define __LOG_LT(logger, timepoint, level, ...)                                \
-  ::specula::logging::get(logger)->log(                                        \
-      timepoint, spdlog::source_loc{__FILE__, __LINE__, __FUNCTION__}, level,  \
+#define __LOG_LT(logger, timepoint, level, ...)                               \
+  ::specula::logging::get(logger)->log(                                       \
+      timepoint, spdlog::source_loc{__FILE__, __LINE__, __FUNCTION__}, level, \
       fmt::format(__VA_ARGS__))
 
 /**
@@ -68,9 +68,9 @@
  *
  * @see logging::get()
  */
-#define __LOG_ST(timepoint, file, line, func, level, ...)                      \
-  ::specula::logging::get(DEFAULT_LOGGER)                                      \
-      ->log(timepoint, spdlog::source_loc{file, line, func}, level,            \
+#define __LOG_ST(timepoint, file, line, func, level, ...)           \
+  ::specula::logging::get(DEFAULT_LOGGER)                           \
+      ->log(timepoint, spdlog::source_loc{file, line, func}, level, \
             fmt::format(__VA_ARGS__))
 
 /**
@@ -80,9 +80,9 @@
  *
  * @see logging::get()
  */
-#define __LOG_L(logger, level, ...)                                            \
-  ::specula::logging::get(logger)->log(                                        \
-      spdlog::source_loc{__FILE__, __LINE__, __FUNCTION__}, level,             \
+#define __LOG_L(logger, level, ...)                                \
+  ::specula::logging::get(logger)->log(                            \
+      spdlog::source_loc{__FILE__, __LINE__, __FUNCTION__}, level, \
       fmt::format(__VA_ARGS__))
 
 /**
@@ -92,9 +92,9 @@
  *
  * @see logging::get()
  */
-#define __LOG_T(timepoint, level, ...)                                         \
-  ::specula::logging::get(DEFAULT_LOGGER)                                      \
-      ->log(timepoint, spdlog::source_loc{__FILE__, __LINE__, __FUNCTION__},   \
+#define __LOG_T(timepoint, level, ...)                                       \
+  ::specula::logging::get(DEFAULT_LOGGER)                                    \
+      ->log(timepoint, spdlog::source_loc{__FILE__, __LINE__, __FUNCTION__}, \
             level, fmt::format(__VA_ARGS__))
 
 /**
@@ -104,9 +104,9 @@
  *
  * @see logging::get()
  */
-#define __LOG_S(file, line, func, level, ...)                                  \
-  ::specula::logging::get(DEFAULT_LOGGER)                                      \
-      ->log(spdlog::source_loc{file, line, func}, level,                       \
+#define __LOG_S(file, line, func, level, ...)            \
+  ::specula::logging::get(DEFAULT_LOGGER)                \
+      ->log(spdlog::source_loc{file, line, func}, level, \
             fmt::format(__VA_ARGS__))
 
 /**
@@ -117,21 +117,21 @@
  *
  * @see logging::get()
  */
-#define __LOG(level, ...)                                                      \
-  ::specula::logging::get(DEFAULT_LOGGER)                                      \
-      ->log(spdlog::source_loc{__FILE__, __LINE__, __FUNCTION__}, level,       \
+#define __LOG(level, ...)                                                \
+  ::specula::logging::get(DEFAULT_LOGGER)                                \
+      ->log(spdlog::source_loc{__FILE__, __LINE__, __FUNCTION__}, level, \
             fmt::format(__VA_ARGS__))
 
 #if SPDLOG_ACTIVE_LEVEL <= SPDLOG_LEVEL_TRACE
 /// @brief Log a trace message using default values
 #define LLTRACE(...) __LOG(spdlog::level::trace, __VA_ARGS__)
 /// @brief Log a trace message with specified source location
-#define LSLTRACE(file, line, function, ...)                                    \
+#define LSLTRACE(file, line, function, ...) \
   __LOG_S(file, line, function, spdlog::level::trace, __VA_ARGS__)
 /// @brief Log a trace message with specified logger
 #define LTRACE(logger, ...) __LOG_L(logger, spdlog::level::trace, __VA_ARGS__)
 /// @brief Log a trace message with specified logger and source location
-#define LSTRACE(logger, file, line, func, ...)                                 \
+#define LSTRACE(logger, file, line, func, ...) \
   __LOG_LS(logger, file, line, func, spdlog::level::trace, __VA_ARGS__)
 #else
 #define LLTRACE(...)
@@ -144,12 +144,12 @@
 /// @brief Log a debug message using default values
 #define LLDEBUG(...) __LOG(spdlog::level::debug, __VA_ARGS__)
 /// @brief Log a debug message with specified source location
-#define LSLDEBUG(file, line, function, ...)                                    \
+#define LSLDEBUG(file, line, function, ...) \
   __LOG_S(file, line, function, spdlog::level::debug, __VA_ARGS__)
 /// @brief Log a debug message with specified logger
 #define LDEBUG(logger, ...) __LOG_L(logger, spdlog::level::debug, __VA_ARGS__)
 /// @brief Log a debug message with specified logger and source location
-#define LSDEBUG(logger, file, line, func, ...)                                 \
+#define LSDEBUG(logger, file, line, func, ...) \
   __LOG_LS(logger, file, line, func, spdlog::level::debug, __VA_ARGS__)
 #else
 #define LLDEBUG(...)
@@ -162,12 +162,12 @@
 /// @brief Log a info message using default values
 #define LLINFO(...) __LOG(spdlog::level::info, __VA_ARGS__)
 /// @brief Log a info message with specified source location
-#define LSLINFO(file, line, function, ...)                                     \
+#define LSLINFO(file, line, function, ...) \
   __LOG_S(file, line, function, spdlog::level::info, __VA_ARGS__)
 /// @brief Log a info message with specified logger
 #define LINFO(logger, ...) __LOG_L(logger, spdlog::level::info, __VA_ARGS__)
 /// @brief Log a info message with specified logger and source location
-#define LSINFO(logger, file, line, func, ...)                                  \
+#define LSINFO(logger, file, line, func, ...) \
   __LOG_LS(logger, file, line, func, spdlog::level::info, __VA_ARGS__)
 #else
 #define LLINFO(...)
@@ -180,12 +180,12 @@
 /// @brief Log a warning message using default values
 #define LLWARN(...) __LOG(spdlog::level::warn, __VA_ARGS__)
 /// @brief Log a warning message with specified source location
-#define LSLWARN(file, line, function, ...)                                     \
+#define LSLWARN(file, line, function, ...) \
   __LOG_S(file, line, function, spdlog::level::warn, __VA_ARGS__)
 /// @brief Log a warning message with specified logger
 #define LWARN(logger, ...) __LOG_L(logger, spdlog::level::warn, __VA_ARGS__)
 /// @brief Log a warning message with specified logger and source location
-#define LSWARN(logger, file, line, func, ...)                                  \
+#define LSWARN(logger, file, line, func, ...) \
   __LOG_LS(logger, file, line, func, spdlog::level::warn, __VA_ARGS__)
 #else
 #define LLWARN(...)
@@ -198,12 +198,12 @@
 /// @brief Log a error message using default values
 #define LLERROR(...) __LOG(spdlog::level::err, __VA_ARGS__)
 /// @brief Log a error message with specified source location
-#define LSLERROR(file, line, function, ...)                                    \
+#define LSLERROR(file, line, function, ...) \
   __LOG_S(file, line, function, spdlog::level::err, __VA_ARGS__)
 /// @brief Log a error message with specified logger
 #define LERROR(logger, ...) __LOG_L(logger, spdlog::level::err, __VA_ARGS__)
 /// @brief Log a error message with specified logger and source location
-#define LSERROR(logger, file, line, func, ...)                                 \
+#define LSERROR(logger, file, line, func, ...) \
   __LOG_LS(logger, file, line, func, spdlog::level::err, __VA_ARGS__)
 #else
 #define LLERROR(...)
@@ -216,13 +216,13 @@
 /// @brief Log a critical message using default values
 #define LLCRITICAL(...) __LOG(spdlog::level::critical, __VA_ARGS__)
 /// @brief Log a critical message with specified source location
-#define LSLCRITICAL(file, line, function, ...)                                 \
+#define LSLCRITICAL(file, line, function, ...) \
   __LOG_S(file, line, function, spdlog::level::critical, __VA_ARGS__)
 /// @brief Log a critical message with specified logger
-#define LCRITICAL(logger, ...)                                                 \
+#define LCRITICAL(logger, ...) \
   __LOG_L(logger, spdlog::level::critical, __VA_ARGS__)
 /// @brief Log a critical message with specified logger and source location
-#define LSCRITICAL(logger, file, line, func, ...)                              \
+#define LSCRITICAL(logger, file, line, func, ...) \
   __LOG_LS(logger, file, line, func, spdlog::level::critical, __VA_ARGS__)
 #else
 #define LLCRITICAL(...)
@@ -261,6 +261,6 @@ inline std::shared_ptr<spdlog::logger> get(const std::string &name) {
   }
   return logger;
 }
-} // namespace specula::logging
+}  // namespace specula::logging
 
 #endif
