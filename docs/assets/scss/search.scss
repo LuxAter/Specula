@@ -1,0 +1,117 @@
+@use './settings.scss'as *;
+
+html {
+    --base00: #{$lightBase00};
+    --base01: #{$lightBase01};
+    --base02: #{$lightBase02};
+    --base03: #{$lightBase03};
+    --base04: #{$lightBase04};
+    --base05: #{$lightBase05};
+    --base06: #{$lightBase06};
+    --base07: #{$lightBase07};
+    --base08: #{$lightBase08};
+    --base09: #{$lightBase09};
+    --base0A: #{$lightBase0A};
+    --base0B: #{$lightBase0B};
+    --base0C: #{$lightBase0C};
+    --base0D: #{$lightBase0D};
+    --base0E: #{$lightBase0E};
+    --base0F: #{$lightBase0F};
+
+    --primary-color: #{$lightPrimary};
+    --primary-dark-color: #{darken($lightPrimary, 10%)};
+    --primary-light-color: #{lighten($lightPrimary, 10%)};
+    --primary-lighter-color: #{lighten($lightPrimary, 20%)};
+    --primary-lightest-color: #{lighten($lightPrimary, 30%)};
+
+    --page-background-color: #{$lightBase00};
+    --page-foreground-color: #{$lightBase05};
+    --page-secondary-foreground-color: #{$lightBase04};
+
+    --font-family: #{$font-family};
+    --font-family-monospace: #{$font-family-monospace};
+
+    --navigation-font-size: 12.2px;
+    --code-font-size: 14.4px;
+}
+
+@media (prefers-color-scheme: dark) {
+    html:not(.light-mode) {
+        color-scheme: dark;
+        --base00: #{$darkBase00};
+        --base01: #{$darkBase01};
+        --base02: #{$darkBase02};
+        --base03: #{$darkBase03};
+        --base04: #{$darkBase04};
+        --base05: #{$darkBase05};
+        --base06: #{$darkBase06};
+        --base07: #{$darkBase07};
+        --base08: #{$darkBase08};
+        --base09: #{$darkBase09};
+        --base0A: #{$darkBase0A};
+        --base0B: #{$darkBase0B};
+        --base0C: #{$darkBase0C};
+        --base0D: #{$darkBase0D};
+        --base0E: #{$darkBase0E};
+        --base0F: #{$darkBase0F};
+
+        --primary-color: #{$darkPrimary};
+        --primary-dark-color: #{lighten($darkPrimary, 10%)};
+        --primary-light-color: #{darken($darkPrimary, 10%)};
+        --primary-lighter-color: #{darken($darkPrimary, 20%)};
+        --primary-lightest-color: #{darken($darkPrimary, 30%)};
+
+        --page-background-color: #{$darkBase00};
+        --page-foreground-color: #{$darkBase05};
+        --page-secondary-foreground-color: #{$darkBase04};
+    }
+}
+
+html.dark-mode {
+    color-scheme: dark;
+    --base00: #{$darkBase00};
+    --base01: #{$darkBase01};
+    --base02: #{$darkBase02};
+    --base03: #{$darkBase03};
+    --base04: #{$darkBase04};
+    --base05: #{$darkBase05};
+    --base06: #{$darkBase06};
+    --base07: #{$darkBase07};
+    --base08: #{$darkBase08};
+    --base09: #{$darkBase09};
+    --base0A: #{$darkBase0A};
+    --base0B: #{$darkBase0B};
+    --base0C: #{$darkBase0C};
+    --base0D: #{$darkBase0D};
+    --base0E: #{$darkBase0E};
+    --base0F: #{$darkBase0F};
+
+    --primary-color: #{$darkPrimary};
+    --primary-dark-color: #{lighten($darkPrimary, 10%)};
+    --primary-light-color: #{darken($darkPrimary, 10%)};
+    --primary-lighter-color: #{darken($darkPrimary, 20%)};
+    --primary-lightest-color: #{darken($darkPrimary, 30%)};
+
+    --page-background-color: #{$darkBase00};
+    --page-foreground-color: #{$darkBase05};
+    --page-secondary-foreground-color: #{$darkBase04};
+}
+
+html,
+body {
+    color: var(--page-foreground-color);
+    background-color: var(--page-background-color);
+    font-family: var(--font-family);
+    font-size: var(--navigation-font-size);
+}
+
+.SRSymbol {
+    color: var(--primary-color);
+    font-family: var(--font-family-monospace);
+    font-size: var(--code-font-size);
+}
+
+.SRScope {
+    font-family: var(--font-family);
+    font-size: var(--navigation-font-size);
+}

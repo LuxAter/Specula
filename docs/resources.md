@@ -41,3 +41,9 @@ dependencies used in this project.
 - [Doxygen Awesome](https://github.com/jothepro/doxygen-awesome-css): Custom
   CSS theme for doxygen html-documentation with lots of customization
   parameters
+- [Base16](chriskempson.com/projects/base16): An architecture for building themes
+- [Font Awesome](https://fontawesome.com): The iconic SVG, font, and CSS toolkit
+
+## Attributions
+
+- [Font Awesome](https://fontawesome.com/license): CC BY 4.0 License (https://creativecommons.org/licenses/by/4.0/)
