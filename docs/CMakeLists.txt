@@ -73,6 +73,7 @@ if(DOXYGEN_FOUND)
       "${CMAKE_CURRENT_SOURCE_DIR}/assets/icons/times-circle-solid.svg"
   )
 
+  set(DOXYGEN_LAYOUT_FILE "${CMAKE_CURRENT_SOURCE_DIR}/assets/DoxygenLayout.xml")
   set(DOXYGEN_HTML_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/assets/html/header.html")
   set(DOXYGEN_HTML_FOOTER "${CMAKE_CURRENT_SOURCE_DIR}/assets/html/footer.html")
 

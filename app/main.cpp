@@ -9,16 +9,13 @@
 #include <unistd.h>
 #endif
 
-#include <fmt/chrono.h>
-#include <fmt/core.h>
-#include <fmt/ranges.h>
+#include <cxxopts.hpp>
 #include <spdlog/sinks/dist_sink.h>
 #include <spdlog/sinks/rotating_file_sink.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/sinks/stdout_sinks.h>
 #include <spdlog/spdlog.h>
 
-#include <cxxopts.hpp>
 #include <specula/logging.hpp>
 #include <specula/version.hpp>
 

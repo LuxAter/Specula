@@ -88,7 +88,12 @@ CPMAddPackage("gh:Neargye/semver#feature/enhanced_version")
 CPMAddPackage("gh:agauniyal/rang#v3.2")
 CPMAddPackage("gh:catchorg/Catch2#v3.0.0-preview4")
 CPMAddPackage("gh:fmtlib/fmt#8.1.1")
-CPMAddPackage("gh:gabime/spdlog#v1.9.2")
+CPMAddPackage(
+  NAME spdlog
+  GIT_TAG v1.9.2
+  GITHUB_REPOSITORY gabime/spdlog
+  OPTIONS "SPDLOG_FMT_EXTERNAL ON"
+)
 CPMAddPackage("gh:p-ranav/argparse#master")
 CPMAddPackage("gh:jarro2783/cxxopts#v3.0.0")
 CPMAddPackage("gh:marzer/tomlplusplus#v3.0.1")

@@ -1,13 +1,14 @@
-#include <spdlog/common.h>
-#include <spdlog/sinks/dist_sink.h>
-#include <spdlog/sinks/stdout_color_sinks.h>
+#include <iostream>
+#include <memory>
 
 #include <catch2/catch_session.hpp>
 #include <catch2/internal/catch_compiler_capabilities.hpp>
 #include <catch2/internal/catch_leak_detector.hpp>
 #include <catch2/internal/catch_platform.hpp>
-#include <iostream>
-#include <memory>
+#include <spdlog/common.h>
+#include <spdlog/sinks/dist_sink.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
+
 #include <specula/logging.hpp>
 
 namespace Catch {

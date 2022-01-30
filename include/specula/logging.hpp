@@ -10,14 +10,14 @@
 #ifndef VISI_LOGGING_HPP_
 #define VISI_LOGGING_HPP_
 
-#include <fmt/chrono.h>
+#include <memory>
+
+#include <fmt/core.h>
 #include <fmt/format.h>
 #include <fmt/ostream.h>
 #include <fmt/ranges.h>
 #include <spdlog/sinks/dist_sink.h>
 #include <spdlog/spdlog.h>
-
-#include <memory>
 
 #ifndef DEFAULT_LOGGER
 #define DEFAULT_LOGGER "specula"
