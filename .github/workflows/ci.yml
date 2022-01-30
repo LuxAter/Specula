@@ -38,6 +38,9 @@ jobs:
       - name: Install Dependencies
         run: pip install gcovr
       - name: Configure CMake
+        env:
+          CC: gcc-10
+          CXX: g++-10
         run: cmake -B ${{ github.workspace }}/build -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} -DSPECULA_BUILD_TESTING=TRUE -DSPECULA_ENABLE_COVERAGE=TRUE -DCPM_SOURCE_CACHE=${{ github.workspace }}/cpm_cache
       - name: Build Tests
         run: cmake --build ${{ github.workspace }}/build --config ${{ env.BUILD_TYPE }}
