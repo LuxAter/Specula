@@ -20,6 +20,8 @@ class MD5 {
     final();
   }
 
+  static MD5 from_file(const std::string& filename);
+
   ~MD5() { reset(); }
 
   void init();
@@ -55,6 +57,7 @@ class MD5 {
   void reset();
 
   inline std::string to_string() const { return std::string(digest_str); }
+  inline std::string hexdigest() const { return std::string(digest_str); }
 
   inline operator std::string() const { return to_string(); }
 

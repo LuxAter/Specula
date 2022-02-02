@@ -61,6 +61,23 @@ static std::uint8_t PADDING[64] = {
 
 static const char* HEX_CHARS = "0123456789abcdef";
 
+MD5 MD5::from_file(const std::string& filename) {
+  MD5 md5;
+  FILE* file = fopen(filename.c_str(), "rb");
+  if (file == nullptr) {
+    throw std::runtime_error("Could not open file " + filename);
+  }
+  std::uint8_t buffer[1024];
+  while (true) {
+    std::size_t read = fread(buffer, 1, sizeof(buffer), file);
+    if (read == 0) break;
+    md5.update(buffer, read);
+  }
+  fclose(file);
+  md5.final();
+  return md5;
+}
+
 void MD5::init() {
   count[0] = count[1] = 0;
   state[0] = 0x67452301;

@@ -8,7 +8,7 @@
 using namespace std::string_literals;
 using namespace std::string_view_literals;
 
-TEST_CASE("MD5", "[util]") {
+TEST_CASE("Static MD5 Hashing Algorithm", "[util]") {
   SECTION("RF1321") {
     CHECK(MD5("").to_string() == "d41d8cd98f00b204e9800998ecf8427e");
     CHECK(MD5("a").to_string() == "0cc175b9c0f1b6a831c399e269772661");
@@ -76,7 +76,7 @@ TEST_CASE("MD5", "[util]") {
   }
 }
 
-TEST_CASE("Stream MD5", "[util]") {
+TEST_CASE("Updating MD5 Hashing Algorithm", "[util]") {
   SECTION("Multiple update calls") {
     MD5 md5;
 
