@@ -18,9 +18,8 @@
 #include <sycl/sycl.hpp>
 
 #include <specula/logging.hpp>
+#include <specula/sysinfo.hpp>
 #include <specula/version.hpp>
-
-#include "sysinfo.hpp"
 
 #ifdef _WIN32
 const std::string LQUOTE("\'");
@@ -82,8 +81,19 @@ int main(int argc, char *argv[]) {
       std::cout << specula::version.to_string() << std::endl;
       std::exit(0);
     } else if (result.count("system-info") != 0L) {
-      std::exit(specula::cli::sysinfo(
-          std::move(result["system-info"].as<std::string>())));
+      std::string format = result["system-info"].as<std::string>();
+      transform(format.begin(), format.end(), format.begin(), ::tolower);
+
+      const auto system_info = specula::sysinfo::system();
+
+      if (format == "toml")
+        std::cout << system_info.to_toml() << std::endl;
+      else if (format == "json")
+        std::cout << toml::json_formatter{system_info.to_toml()} << std::endl;
+      else if (format == "yaml")
+        std::cout << toml::yaml_formatter{system_info.to_toml()} << std::endl;
+
+      std::exit(0);
     }
 
     try {

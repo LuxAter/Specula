@@ -11,7 +11,10 @@ add_library(specula::specula ALIAS specula)
 
 target_compile_features(specula PUBLIC cxx_std_20)
 
-target_link_libraries(specula PUBLIC semver::semver spdlog::spdlog fmt::fmt)
+target_link_libraries(
+  specula PUBLIC semver::semver spdlog::spdlog fmt::fmt tomlplusplus::tomlplusplus iware::infoware
+                 magic_enum::magic_enum
+)
 
 target_include_directories(
   specula
