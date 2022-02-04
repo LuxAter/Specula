@@ -5,6 +5,7 @@
 #include <vector>
 
 #include <infoware/infoware.hpp>
+#include <sycl/sycl.hpp>
 #include <toml++/toml.h>
 
 namespace specula::sysinfo {
@@ -57,6 +58,35 @@ struct OS {
   toml::table to_toml() const;
 };
 
+struct Device {
+  sycl::info::device_type device_type;
+  std::uint32_t vendor_id;
+  std::uint32_t max_compute_units;
+  std::uint32_t max_clock_frequency;
+  std::uint64_t max_mem_alloc_size;
+  std::uint64_t global_mem_size;
+  std::uint64_t local_mem_size;
+  bool is_available;
+  std::vector<sycl::info::execution_capability> execution_capabilities;
+  std::string driver_version;
+  std::string version;
+  std::vector<sycl::aspect> aspects;
+  std::string name;
+  std::string vendor;
+
+  toml::table to_toml() const;
+};
+
+struct Platform {
+  std::string name;
+  std::string vendor;
+  std::string version;
+
+  std::vector<Device> devices;
+
+  toml::table to_toml() const;
+};
+
 struct System {
   Kernel kernel;
   Memory memory;
@@ -64,6 +94,7 @@ struct System {
 
   CPU cpu;
   std::vector<GPU> gpus;
+  std::vector<Platform> platforms;
 
   toml::table to_toml() const;
 };
@@ -73,6 +104,9 @@ std::vector<GPU> gpus();
 Kernel kernel();
 Memory memory();
 OS os();
+
+std::vector<Device> devices(const sycl::platform& platform);
+std::vector<Platform> platforms();
 
 System system();
 
