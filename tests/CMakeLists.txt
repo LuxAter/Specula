@@ -8,6 +8,8 @@ target_link_libraries(
   PRIVATE Catch2 fmt::fmt spdlog::spdlog
 )
 
+add_sycl_to_target(TARGET unit-tests)
+
 include(Catch)
 catch_discover_tests(unit-tests TEST_LIST "CATCH_TESTS")
 

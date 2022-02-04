@@ -63,6 +63,10 @@ endif()
 option(SPECULA_BUILD_TESTING "Enable local unit tests" ${SPECULA_MAIN_PROJECT})
 option(SPECULA_ENABLE_COVERAGE "Enable test coverage reporting" OFF)
 option(SPECULA_BUILD_DOCUMENTATION "Enable documentation generation" ${SPECULA_MAIN_PROJECT})
+set(SPECULA_SYCL_TARGETS
+    "omp"
+    CACHE STRING "Specify SYCL target platforms"
+)
 
 if(SPECULA_BUILD_TESTING)
   include(CTest)
@@ -80,6 +84,9 @@ if(OpenCL_FOUND)
 else()
   set(SPECULA_HAS_OPENCL OFF)
 endif()
+
+set(HIPSYCL_TARGETS "${SPECULA_SYCL_TARGETS}")
+find_package(hipsycl REQUIRED)
 
 include(cmake/CPM.cmake)
 CPMAddPackage("gh:Neargye/magic_enum#master")

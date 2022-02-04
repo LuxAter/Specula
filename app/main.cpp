@@ -15,6 +15,7 @@
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/sinks/stdout_sinks.h>
 #include <spdlog/spdlog.h>
+#include <sycl/sycl.hpp>
 
 #include <specula/logging.hpp>
 #include <specula/version.hpp>
@@ -30,6 +31,7 @@ const std::string RQUOTE("’");
 #endif
 
 using namespace specula;
+using namespace sycl;
 
 namespace cxxopts {
 class argument_invalid_choice : public cxxopts::OptionParseException {
@@ -144,6 +146,12 @@ int main(int argc, char *argv[]) {
     }
 
     LINFO("specula::bin", "Specula v{}", version);
+
+    const auto platforms = platform::get_platforms();
+    for (auto &it : platforms) {
+      LINFO("specula::bin", "Platform: {}",
+            it.get_info<info::platform::name>());
+    }
 
     return 0;
 

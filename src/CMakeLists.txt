@@ -23,6 +23,8 @@ if("${CMAKE_BUILD_TYPE}" MATCHES "Debug|RelWithDebInfo")
   target_compile_definitions(specula PUBLIC SPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_TRACE)
 endif()
 
+add_sycl_to_target(TARGET specula)
+
 include(EnableExtraCompilerWarnings)
 enable_extra_compiler_warnings(specula)
 
