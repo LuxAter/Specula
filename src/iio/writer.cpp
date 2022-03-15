@@ -1,33 +1,33 @@
-#include "iio/writer.hpp"
+#include "writer.hpp"
 
-#include <cstdint>
-#include <string>
+#include <cstdio>
+#include <filesystem>
+#include <string_view>
 
-#include "iio/spec.hpp"
+#include <specula/common/logging.hpp>
 
-using namespace specula::iio;
-
-ImageWriter::ImageWriter(const Spec& spec, const TypeDef& expected)
-    : file_{nullptr}, spec_{spec}, expected_type_{expected} {}
-ImageWriter::ImageWriter(const std::string& filename, const Spec& spec,
-                         const TypeDef& expected)
-    : file_{nullptr}, spec_{spec}, expected_type_{expected} {
-  open(filename);
+specula::iio::ImageWriter::ImageWriter() {}
+specula::iio::ImageWriter::~ImageWriter() {
+  if (_file != nullptr) std::fclose(_file);
 }
 
-ImageWriter::~ImageWriter() { close(); }
+bool specula::iio::ImageWriter::open(std::string_view file_path) {
+  _file = std::fopen(file_path.data(), "wb");
+  if (_file == nullptr) {
+    LERROR("iio", "Failed to open file \"{}\" to write image to", file_path);
+    return false;
+  }
+  _path = file_path;
+  _ext = std::filesystem::path(file_path).extension().string();
 
-bool ImageWriter::open(const std::string& filename) {
-  filename_ = filename;
-  ext_ = std::string_view(filename).substr(filename.find_last_of('.') + 1);
-  file_ = fopen(filename.c_str(), "wb");
-  return file_ != nullptr;
+  return true;
 }
 
-bool ImageWriter::close() {
-  if (file_ != nullptr) fclose(file_);
-  filename_ = std::string();
-  ext_ = std::string_view();
-  file_ = nullptr;
+bool specula::iio::ImageWriter::close() {
+  if (_file != nullptr) std::fclose(_file);
+  _file = nullptr;
+  _path.clear();
+  _ext.clear();
+
   return true;
 }

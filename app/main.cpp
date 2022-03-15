@@ -15,10 +15,8 @@
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/sinks/stdout_sinks.h>
 #include <spdlog/spdlog.h>
-#include <sycl/sycl.hpp>
 
-#include <specula/logging.hpp>
-#include <specula/sysinfo.hpp>
+#include <specula/common/logging.hpp>
 #include <specula/version.hpp>
 
 #ifdef _WIN32
@@ -30,7 +28,6 @@ const std::string RQUOTE("’");
 #endif
 
 using namespace specula;
-using namespace sycl;
 
 namespace cxxopts {
 class argument_invalid_choice : public cxxopts::OptionParseException {
@@ -79,20 +76,6 @@ int main(int argc, char *argv[]) {
       std::exit(0);
     } else if (result.count("version") != 0L) {
       std::cout << specula::version.to_string() << std::endl;
-      std::exit(0);
-    } else if (result.count("system-info") != 0L) {
-      std::string format = result["system-info"].as<std::string>();
-      transform(format.begin(), format.end(), format.begin(), ::tolower);
-
-      const auto system_info = specula::sysinfo::system();
-
-      if (format == "toml")
-        std::cout << system_info.to_toml() << std::endl;
-      else if (format == "json")
-        std::cout << toml::json_formatter{system_info.to_toml()} << std::endl;
-      else if (format == "yaml")
-        std::cout << toml::yaml_formatter{system_info.to_toml()} << std::endl;
-
       std::exit(0);
     }
 
@@ -156,12 +139,6 @@ int main(int argc, char *argv[]) {
     }
 
     LINFO("specula::bin", "Specula v{}", version);
-
-    const auto platforms = platform::get_platforms();
-    for (auto &it : platforms) {
-      LINFO("specula::bin", "Platform: {}",
-            it.get_info<info::platform::name>());
-    }
 
     return 0;
 

@@ -4,11 +4,9 @@ add_executable(unit-tests ${SOURCES})
 
 target_link_libraries(
   unit-tests
-  PUBLIC specula
-  PRIVATE Catch2 fmt::fmt spdlog::spdlog
+  PUBLIC specula::specula
+  PRIVATE Catch2 fmt::fmt spdlog::spdlog xxHash::xxhash
 )
-
-add_sycl_to_target(TARGET unit-tests)
 
 include(Catch)
 catch_discover_tests(unit-tests TEST_LIST "CATCH_TESTS")

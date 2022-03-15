@@ -63,10 +63,6 @@ endif()
 option(SPECULA_BUILD_TESTING "Enable local unit tests" ${SPECULA_MAIN_PROJECT})
 option(SPECULA_ENABLE_COVERAGE "Enable test coverage reporting" OFF)
 option(SPECULA_BUILD_DOCUMENTATION "Enable documentation generation" ${SPECULA_MAIN_PROJECT})
-set(SPECULA_SYCL_TARGETS
-    "omp"
-    CACHE STRING "Specify SYCL target platforms"
-)
 
 if(SPECULA_BUILD_TESTING)
   include(CTest)
@@ -84,9 +80,6 @@ if(OpenCL_FOUND)
 else()
   set(SPECULA_HAS_OPENCL OFF)
 endif()
-
-set(HIPSYCL_TARGETS "${SPECULA_SYCL_TARGETS}")
-find_package(hipsycl REQUIRED)
 
 include(cmake/CPM.cmake)
 CPMAddPackage("gh:Neargye/magic_enum#master")
@@ -111,6 +104,12 @@ CPMAddPackage(
   OPTIONS "INFOWARE_USE_OPENCL ${SPECULA_HAS_OPENCL}"
 )
 CPMAddPackage(
+  NAME xxHash
+  GIT_TAG v0.8.1
+  GITHUB_REPOSITORY Cyan4973/xxHash
+  DOWNLOAD_ONLY True
+)
+CPMAddPackage(
   NAME libpng
   GIT_TAG libpng16
   GITHUB_REPOSITORY glennrp/libpng
@@ -118,6 +117,11 @@ CPMAddPackage(
 )
 
 list(APPEND CMAKE_MODULE_PATH "${Catch2_SOURCE_DIR}/extras")
+if(xxHash_ADDED)
+  set(XXHASH_BUILD_ENABLE_INLINE_API OFF)
+  set(XXHASH_BUILD_XXHSUM OFF)
+  add_subdirectory("${xxHash_SOURCE_DIR}/cmake_unofficial" "${xxHash_BINARY_DIR}" EXCLUDE_FROM_ALL)
+endif()
 
 # --- Targets ---
 

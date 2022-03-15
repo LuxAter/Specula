@@ -9,7 +9,7 @@
 #include <spdlog/sinks/dist_sink.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 
-#include <specula/logging.hpp>
+#include <specula/common/logging.hpp>
 
 namespace Catch {
 CATCH_INTERNAL_START_WARNINGS_SUPPRESSION

@@ -7,8 +7,8 @@
  * number of useful macros for implementing a common interface for logging, and
  * managing the different possible invocation methods for the loggers.
  */
-#ifndef VISI_LOGGING_HPP_
-#define VISI_LOGGING_HPP_
+#ifndef SPECULA_LOGGING_HPP_
+#define SPECULA_LOGGING_HPP_
 
 #include <memory>
 

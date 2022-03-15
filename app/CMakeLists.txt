@@ -16,8 +16,6 @@ target_include_directories(specula-bin PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
 
 set_target_properties(specula-bin PROPERTIES RUNTIME_OUTPUT_NAME "specula")
 
-add_sycl_to_target(TARGET specula-bin)
-
 include(EnableExtraCompilerWarnings)
 enable_extra_compiler_warnings(specula-bin)
 if(SPECULA_ENABLE_COVERAGE)

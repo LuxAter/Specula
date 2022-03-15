@@ -1,37 +1,27 @@
-#ifndef SPECULA_IIO_WRITER_HPP
-#define SPECULA_IIO_WRITER_HPP
+#ifndef SPECULA_IIO_WRITER_HPP_
+#define SPECULA_IIO_WRITER_HPP_
 
-#include <cstdint>
-#include <limits>
+#include <cstdio>
 #include <string>
-
-#include "spec.hpp"
+#include <string_view>
 
 namespace specula::iio {
 class ImageWriter {
  public:
-  ImageWriter(const Spec& spec, const TypeDef& expected);
-  ImageWriter(const std::string& filename, const Spec& spec,
-              const TypeDef& expected);
+  ImageWriter();
   virtual ~ImageWriter();
 
-  bool open(const std::string& filename);
-  inline bool is_open() const { return file_ != nullptr; }
+  bool open(std::string_view file_path);
   bool close();
 
-  virtual bool write_header() { return true; };
-  virtual bool write_scanline(
-      int y, int z, const void* data,
-      std::uint32_t xstride = std::numeric_limits<std::uint32_t>::max()) = 0;
-  virtual bool write_footer() { return true; };
+  virtual bool write_header() = 0;
+  virtual bool write_scanline() = 0;
+  virtual bool write_footer() = 0;
 
  protected:
-  std::string filename_ = std::string();
-  std::string_view ext_ = std::string_view();
-  FILE* file_ = nullptr;
-  Spec spec_;
-  TypeDef expected_type_;
+  std::string _path, _ext;
+  FILE* _file;
 };
 }  // namespace specula::iio
 
-#endif  // !SPECULA_IIO_WRITER_HPP
+#endif  // SPECULA_IIO_WRITER_HPP_
