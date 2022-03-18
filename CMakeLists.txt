@@ -60,11 +60,11 @@ endif()
 
 # --- Options ---
 
-option(SPECULA_BUILD_TESTING "Enable local unit tests" ${SPECULA_MAIN_PROJECT})
+option(SPECULA_ENABLE_TESTING "Enable local unit tests" ${SPECULA_MAIN_PROJECT})
 option(SPECULA_ENABLE_COVERAGE "Enable test coverage reporting" OFF)
-option(SPECULA_BUILD_DOCUMENTATION "Enable documentation generation" ${SPECULA_MAIN_PROJECT})
+option(SPECULA_ENABLE_DOCUMENTATION "Enable documentation generation" ${SPECULA_MAIN_PROJECT})
 
-if(SPECULA_BUILD_TESTING)
+if(SPECULA_ENABLE_TESTING)
   include(CTest)
 endif()
 
@@ -128,11 +128,11 @@ endif()
 add_subdirectory(src)
 add_subdirectory(app)
 
-if(SPECULA_BUILD_DOCUMENTATION)
+if(SPECULA_ENABLE_DOCUMENTATION)
   add_subdirectory(docs)
 endif()
 
-if(SPECULA_BUILD_TESTING)
+if(SPECULA_ENABLE_TESTING)
   add_subdirectory(tests)
 endif()
 

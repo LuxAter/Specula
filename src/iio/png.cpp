@@ -65,13 +65,13 @@ bool specula::iio::PngWriter::write_header() {
   return true;
 }
 bool specula::iio::PngWriter::write_scanline(const void* data) {
-  if (_abort) return false;
+  if (_abort || _ptr == nullptr) return false;
   if (setjmp(png_jmpbuf(_ptr))) return false;
   png_write_row(_ptr, reinterpret_cast<png_const_bytep>(data));
   return true;
 }
 bool specula::iio::PngWriter::write_footer() {
-  if (_abort) return false;
+  if (_abort || _ptr == nullptr) return false;
   if (setjmp(png_jmpbuf(_ptr))) return false;
   png_write_end(_ptr, _info);
   png_destroy_write_struct(&_ptr, &_info);

@@ -1,5 +1,6 @@
 /** @file logging.hpp
  * @brief Specula logging handler wrapping spdlog
+ * @copyright Copyright (c) 2022 - Arden Rasmussen
  *
  * This header provides the common interface to specula's logging interface.
  * The actuall implementation is provided by

@@ -6,7 +6,8 @@
 
 #include <specula/common/logging.hpp>
 
-specula::iio::ImageWriter::ImageWriter() {}
+specula::iio::ImageWriter::ImageWriter()
+    : _abort{false}, _path{}, _ext{}, _file{nullptr} {}
 specula::iio::ImageWriter::~ImageWriter() {
   if (_file != nullptr) std::fclose(_file);
 }
@@ -28,6 +29,7 @@ bool specula::iio::ImageWriter::close() {
   _file = nullptr;
   _path.clear();
   _ext.clear();
+  _abort = false;
 
   return true;
 }
