@@ -15,10 +15,13 @@ class ImageWriter {
   bool close();
 
   virtual bool write_header() = 0;
-  virtual bool write_scanline() = 0;
+  virtual bool write_scanline(const void* data) = 0;
   virtual bool write_footer() = 0;
 
+  inline void abort() { _abort = true; }
+
  protected:
+  bool _abort = false;
   std::string _path, _ext;
   FILE* _file;
 };

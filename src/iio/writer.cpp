@@ -14,7 +14,7 @@ specula::iio::ImageWriter::~ImageWriter() {
 bool specula::iio::ImageWriter::open(std::string_view file_path) {
   _file = std::fopen(file_path.data(), "wb");
   if (_file == nullptr) {
-    LERROR("iio", "Failed to open file \"{}\" to write image to", file_path);
+    LWARN("iio", "Failed to open file \"{}\" to write image to", file_path);
     return false;
   }
   _path = file_path;
