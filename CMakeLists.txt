@@ -126,7 +126,7 @@ endif()
 # --- Targets ---
 
 add_subdirectory(src)
-add_subdirectory(app)
+# add_subdirectory(app)
 
 if(SPECULA_ENABLE_DOCUMENTATION)
   add_subdirectory(docs)

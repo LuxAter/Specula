@@ -17,7 +17,7 @@
 #include <spdlog/spdlog.h>
 
 #include <specula/common/logging.hpp>
-#include <specula/version.hpp>
+#include <specula/specula/version.hpp>
 
 #ifdef _WIN32
 const std::string LQUOTE("\'");
