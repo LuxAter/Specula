@@ -14,6 +14,8 @@ if(DOXYGEN_FOUND)
     set(DOXYGEN_PROJECT_NUMBER "v${PROJECT_VERSION}")
     set(DOXYGEN_GENERATE_TREEVIEW YES)
 
+    set(DOXYGEN_GENERATE_XML YES)
+
     set(DOXYGEN_HTML_EXTRA_STYLESHEET
         "${CMAKE_CURRENT_SOURCE_DIR}/assets/css/doxygen-awesome.css"
         "${CMAKE_CURRENT_SOURCE_DIR}/assets/css/doxygen-awesome-sidebar-only.css"
@@ -40,4 +42,7 @@ if(DOXYGEN_FOUND)
     set(DOXYGEN_HTML_COLORSTYLE_GAMMA 113)
 
     doxygen_add_docs(docs ${HEADERS} ${SOURCES} ${DOCS})
+
+    add_custom_command(OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/html/coverage.svg" COMMAND "${PROJECT_SOURCE_DIR}/scripts/doc-coverage.py" -f badge -o "${CMAKE_CURRENT_BINARY_DIR}/html/coverage.svg" "${CMAKE_CURRENT_BINARY_DIR}/xml" "${PROJECT_SOURCE_DIR}" DEPENDS docs)
+    add_custom_target(docs-coverage DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/html/coverage.svg")
 endif()

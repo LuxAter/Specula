@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 project(
   Specula
   VERSION 0.1.0
-  DESCRIPTION "C++17 Pathtracing Renderer"
+  DESCRIPTION "C++20 Pathtracing Renderer"
   LANGUAGES C CXX
 )
 
@@ -85,7 +85,6 @@ include(cmake/CPM.cmake)
 CPMAddPackage("gh:Neargye/magic_enum#master")
 CPMAddPackage("gh:Neargye/nameof#master")
 CPMAddPackage("gh:Neargye/semver#feature/enhanced_version")
-CPMAddPackage("gh:agauniyal/rang#v3.2")
 CPMAddPackage("gh:catchorg/Catch2#v3.0.0-preview4")
 CPMAddPackage("gh:fmtlib/fmt#8.1.1")
 CPMAddPackage(
@@ -94,9 +93,6 @@ CPMAddPackage(
   GITHUB_REPOSITORY gabime/spdlog
   OPTIONS "SPDLOG_FMT_EXTERNAL ON"
 )
-CPMAddPackage("gh:p-ranav/argparse#master")
-CPMAddPackage("gh:jarro2783/cxxopts#v3.0.0")
-CPMAddPackage("gh:marzer/tomlplusplus#v3.0.1")
 CPMAddPackage(
   NAME infoware
   GIT_TAG main
