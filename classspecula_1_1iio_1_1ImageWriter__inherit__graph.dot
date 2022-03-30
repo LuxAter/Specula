@@ -1,0 +1,10 @@
+digraph "specula::iio::ImageWriter"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname="Iosevka",fontsize="10",labelfontname="Iosevka",labelfontsize="10"];
+  node [fontname="Iosevka",fontsize="10",shape=record];
+  Node1 [label="specula::iio::ImageWriter",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Base image writer class."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Iosevka"];
+  Node2 [label="specula::iio::PngWriter",height=0.2,width=0.4,color="black",URL="$classspecula_1_1iio_1_1PngWriter.html",tooltip="PNG image writer class."];
+}

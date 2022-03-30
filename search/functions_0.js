@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['get_0',['get',['../logging_8hpp.html#a3ee8171b6a7b2d03cfc2b634cac27075',1,'specula::logging']]]
+  ['abort_0',['abort',['../classspecula_1_1iio_1_1ImageWriter.html#aaf7ac6789099c142afb0fb4b826b6a5f',1,'specula::iio::ImageWriter']]]
 ];

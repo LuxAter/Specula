@@ -1,0 +1,14 @@
+digraph "src/iio"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname="Iosevka",fontsize="10",labelfontname="Iosevka",labelfontsize="10"];
+  node [fontname="Iosevka",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_68267d1309a1af8e8297ef4c3efbcdba {
+    graph [ bgcolor="#daedff", pencolor="grey25", style="filled,dashed,", label="src", fontname="Iosevka", fontsize="10", URL="dir_68267d1309a1af8e8297ef4c3efbcdba.html"]
+  dir_d7c627c2973a53d39511242d15895b65 [shape=box, label="iio", style="filled,bold,", fillcolor="#daedff", color="grey25", URL="dir_d7c627c2973a53d39511242d15895b65.html"];
+  }
+  dir_d44c64559bbebec7f509842c48db8b23 [shape=box, label="include", style="", fillcolor="#daedff", color="red", URL="dir_d44c64559bbebec7f509842c48db8b23.html"];
+  dir_d7c627c2973a53d39511242d15895b65->dir_d44c64559bbebec7f509842c48db8b23 [headlabel="4", labeldistance=1.5 headhref="dir_000004_000005.html"];
+}

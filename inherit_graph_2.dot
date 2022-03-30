@@ -1,0 +1,11 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname="Iosevka",fontsize="10",labelfontname="Iosevka",labelfontsize="10"];
+  node [fontname="Iosevka",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="specula::iio::Spec",height=0.2,width=0.4,color="black",URL="$structspecula_1_1iio_1_1Spec.html",tooltip="Defines the general setting for the image format."];
+  Node0 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Iosevka"];
+  Node1 [label="specula::iio::PngSpec",height=0.2,width=0.4,color="black",URL="$structspecula_1_1iio_1_1PngSpec.html",tooltip="Defines the setting for the PNG image format."];
+}

@@ -1,0 +1,12 @@
+digraph "include/specula/specula"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname="Iosevka",fontsize="10",labelfontname="Iosevka",labelfontsize="10"];
+  node [fontname="Iosevka",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_26db96966dabc582ccddf970f4208118 {
+    graph [ bgcolor="#daedff", pencolor="grey50", style="filled,dashed,", label="specula", fontname="Iosevka", fontsize="10", URL="dir_26db96966dabc582ccddf970f4208118.html"]
+  dir_b953b3ca7d5b81997ba869c39927009c [shape=box, label="specula", style="filled,bold,", fillcolor="#daedff", color="grey25", URL="dir_b953b3ca7d5b81997ba869c39927009c.html"];
+  }
+}

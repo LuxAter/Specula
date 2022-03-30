@@ -25,10 +25,10 @@
 var NAVTREE =
 [
   [ "Specula", "index.html", [
-    [ "About the Project", "index.html#autotoc_md9", null ],
-    [ "Getting Started", "index.html#autotoc_md10", null ],
-    [ "Usage", "index.html#autotoc_md11", null ],
-    [ "Contributing", "index.html#autotoc_md12", null ],
+    [ "About the Project", "index.html#autotoc_md8", null ],
+    [ "Getting Started", "index.html#autotoc_md9", null ],
+    [ "Usage", "index.html#autotoc_md10", null ],
+    [ "Contributing", "index.html#autotoc_md11", null ],
     [ "Resources", "md_docs_resources.html", [
       [ "References", "md_docs_resources.html#autotoc_md1", null ],
       [ "Dependencies", "md_docs_resources.html#autotoc_md2", [
@@ -36,21 +36,32 @@ var NAVTREE =
         [ "Internal Dependencies", "md_docs_resources.html#autotoc_md4", null ],
         [ "Testing Dependencies", "md_docs_resources.html#autotoc_md5", null ],
         [ "Other Dependencies", "md_docs_resources.html#autotoc_md6", null ]
-      ] ],
-      [ "Attributions", "md_docs_resources.html#autotoc_md7", null ]
+      ] ]
     ] ],
     [ "The MIT License (MIT)", "md_LICENSE.html", null ],
     [ "Changelog", "md_CHANGELOG.html", [
-      [ "0.1.0 (2022-01-23)", "md_CHANGELOG.html#autotoc_md14", [
-        [ "Feature", "md_CHANGELOG.html#autotoc_md15", null ],
-        [ "Documentation", "md_CHANGELOG.html#autotoc_md16", null ]
+      [ "0.1.0 (2022-01-23)", "md_CHANGELOG.html#autotoc_md13", [
+        [ "Feature", "md_CHANGELOG.html#autotoc_md14", null ],
+        [ "Documentation", "md_CHANGELOG.html#autotoc_md15", null ]
       ] ]
     ] ],
-    [ "Files", "files.html", [
-      [ "File List", "files.html", "files_dup" ],
-      [ "File Members", "globals.html", [
-        [ "All", "globals.html", null ],
-        [ "Macros", "globals_defs.html", null ]
+    [ "Reference", null, [
+      [ "Class List", "annotated.html", [
+        [ "Class List", "annotated.html", "annotated_dup" ],
+        [ "Class Index", "classes.html", null ],
+        [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
+        [ "Class Members", "functions.html", [
+          [ "All", "functions.html", null ],
+          [ "Functions", "functions_func.html", null ],
+          [ "Variables", "functions_vars.html", null ]
+        ] ]
+      ] ],
+      [ "File List", "files.html", [
+        [ "File List", "files.html", "files_dup" ],
+        [ "File Members", "globals.html", [
+          [ "All", "globals.html", null ],
+          [ "Macros", "globals_defs.html", null ]
+        ] ]
       ] ]
     ] ]
   ] ]
@@ -58,7 +69,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"dir_26db96966dabc582ccddf970f4208118.html"
+"annotated.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

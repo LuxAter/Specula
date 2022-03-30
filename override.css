@@ -1,1 +1,39 @@
-.github-corner svg{fill:var(--primary-light-color);color:var(--page-background-color);width:72px;height:72px}@media screen and (max-width: 767px){.github-corner svg{width:55px;height:55px}#projectnumber{margin-right:22px}}.directory .levels span{color:var(--primary-color)}.contents img,.contents .center,.contents center{overflow:auto}.arrow{font-size:80%}.left #MSearchSelect{display:inline-block;width:1em;height:1em;-webkit-mask:url("search-solid.svg") no-repeat 100% 100%;mask:url("search-solid.svg") no-repeat 100% 100%;-webkit-mask-size:cover;mask-size:cover;background-color:var(--page-secondary-foreground-color);background-image:none;margin-left:10px}.right #MSearchCloseImg{display:inline-block;width:1em;height:1em;-webkit-mask:url("times-circle-solid.svg") no-repeat 100% 100%;mask:url("times-circle-solid.svg") no-repeat 100% 100%;-webkit-mask-size:cover;mask-size:cover;background-color:var(--page-secondary-foreground-color);background-image:none;margin-top:3.5px}.icondoc{display:inline-block;width:.75em;height:1em;-webkit-mask:url("file-alt-solid.svg") no-repeat 100% 100%;mask:url("file-alt-solid.svg") no-repeat 100% 100%;-webkit-mask-size:cover;mask-size:cover;filter:none;background-color:var(--page-secondary-foreground-color);background-image:none;margin-right:2px}.iconfopen{display:inline-block;width:1.125em;height:1em;-webkit-mask:url("folder-open-solid.svg") no-repeat 100% 100%;mask:url("folder-open-solid.svg") no-repeat 100% 100%;-webkit-mask-size:cover;mask-size:cover;filter:none;background-color:var(--primary-color);background-image:none;margin-right:2px}.iconfclosed{display:inline-block;width:1em;height:1em;-webkit-mask:url("folder-solid.svg") no-repeat 100% 100%;mask:url("folder-solid.svg") no-repeat 100% 100%;-webkit-mask-size:cover;mask-size:cover;filter:none;background-color:var(--primary-color);background-image:none;margin-right:2px}iframe#MSearchResults{width:98%}doxygen-awesome-dark-mode-toggle:after{display:inline-block;width:1em;height:1em;-webkit-mask:url("sun-solid.svg") no-repeat 100% 100%;mask:url("sun-solid.svg") no-repeat 100% 100%;-webkit-mask-size:cover;mask-size:cover;content:" ";background-color:var(--primary-color);margin-top:5px}@media(prefers-color-scheme: dark){html:not(.light-mode) doxygen-awesome-dark-mode-toggle:after{display:inline-block;width:1em;height:1em;-webkit-mask:url("moon-solid.svg") no-repeat 100% 100%;mask:url("moon-solid.svg") no-repeat 100% 100%;-webkit-mask-size:cover;mask-size:cover}}html.dark-mode doxygen-awesome-dark-mode-toggle:after{display:inline-block;width:1em;height:1em;-webkit-mask:url("moon-solid.svg") no-repeat 100% 100%;mask:url("moon-solid.svg") no-repeat 100% 100%;-webkit-mask-size:cover;mask-size:cover}.memberdecls td,.fieldtable tr{-webkit-transition-property:none;-webkit-transition-duration:none;-moz-transition-property:none;-moz-transition-duration:none;-ms-transition-property:none;-ms-transition-duration:none;-o-transition-property:none;-o-transition-duration:none;transition-property:none;transition-duration:none}
+html {
+    --font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+    --font-family-monospace: ui-monospace,Iosevka,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+}
+
+.github-corner svg {
+  fill: var(--primary-light-color);
+  color: var(--page-background-color);
+  width: 72px;
+  height: 72px;
+}
+@media screen and (max-width: 767px) {
+  .github-corner svg {
+    width: 55px;
+    height: 55px;
+  }
+  #projectnumber {
+    margin-right: 22px;
+  }
+}
+.directory .levels span {
+  color: var(--primary-color);
+}
+.arrow {
+  font-size: 80%;
+}
+.memberdecls td,
+.fieldtable tr {
+  -webkit-transition-property: none;
+  -webkit-transition-duration: none;
+  -moz-transition-property: none;
+  -moz-transition-duration: none;
+  -ms-transition-property: none;
+  -ms-transition-duration: none;
+  -o-transition-property: none;
+  -o-transition-duration: none;
+  transition-property: none;
+  transition-duration: none;
+}
