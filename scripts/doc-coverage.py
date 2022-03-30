@@ -256,7 +256,7 @@ def main():
     parser.add_argument(
         "--label",
         type=str,
-        default="Coverage",
+        default="Doc%20Coverage",
         help="label to use when generating badge",
     )
     parser.add_argument(

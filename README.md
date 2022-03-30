@@ -1,7 +1,8 @@
 # Specula
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/LuxAter/Specula/CI?label=Build&style=flat-square)
-![Codecov](https://img.shields.io/codecov/c/github/LuxAter/Specula?label=Coverage&style=flat-square)
+![Codecov](https://img.shields.io/codecov/c/github/LuxAter/Specula?label=Code%20Coverage&style=flat-square)
+![Docscov](https://luxater.github.io/Specula/coverage.svg)
 ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/LuxAter/Specula?label=Tag&style=flat-square)
 ![GitHub release (latest by SemVer)](https://img.shields.io/github/downloads/LuxAter/Specula/latest/total?label=Downloads&style=flat-square)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/LuxAter/Specula?label=Commit%20Activity&style=flat-square)
