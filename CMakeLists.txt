@@ -111,13 +111,23 @@ CPMAddPackage(
   GITHUB_REPOSITORY glennrp/libpng
   OPTIONS "PNG_EXECUTABLES NO" "PNG_TESTS NO"
 )
-
+CPMAddPackage(
+  NAME qoi
+  GIT_TAG master
+  GITHUB_REPOSITORY phoboslab/qoi
+  DOWNLOAD_ONLY YES
+)
 list(APPEND CMAKE_MODULE_PATH "${Catch2_SOURCE_DIR}/extras")
 if(xxHash_ADDED)
   set(XXHASH_BUILD_ENABLE_INLINE_API OFF)
   set(XXHASH_BUILD_XXHSUM OFF)
   add_subdirectory("${xxHash_SOURCE_DIR}/cmake_unofficial" "${xxHash_BINARY_DIR}" EXCLUDE_FROM_ALL)
 endif()
+if (qoi_ADDED)
+  add_library(qoi ${PROJECT_SOURCE_DIR}/cmake/qoi.cpp)
+  target_include_directories(qoi PUBLIC "${qoi_SOURCE_DIR}")
+endif()
+
 
 # --- Targets ---
 

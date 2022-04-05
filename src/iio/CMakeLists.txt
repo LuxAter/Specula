@@ -5,7 +5,7 @@ add_library(specula::iio ALIAS specula_iio)
 
 target_compile_features(specula_iio PUBLIC cxx_std_20)
 
-target_link_libraries(specula_iio PRIVATE specula::common png)
+target_link_libraries(specula_iio PRIVATE specula::common png qoi)
 
 target_include_directories(
   specula_iio

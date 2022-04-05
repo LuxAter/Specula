@@ -9,7 +9,7 @@ using namespace specula::iio;
 
 TEST_CASE("PNGWriter", "[iio][iio::png]") {
   SECTION("Grayscale") {
-    PngSpec spec{{.width{128}, .height{128}, .channels{1}}};
+    PngSpec spec{{.width = 128, .height = 128, .channels = 1}};
     PngWriter writer(spec);
     std::vector<std::uint8_t> row(spec.width * spec.channels, 0);
 
@@ -63,7 +63,7 @@ TEST_CASE("PNGWriter", "[iio][iio::png]") {
   }
 
   SECTION("Grayscale Alpha") {
-    PngSpec spec{{.width{128}, .height{128}, .channels{2}}};
+    PngSpec spec{{.width = 128, .height = 128, .channels = 2}};
     PngWriter writer(spec);
     std::vector<std::uint8_t> row(spec.width * spec.channels, 0);
 
@@ -117,7 +117,7 @@ TEST_CASE("PNGWriter", "[iio][iio::png]") {
   }
 
   SECTION("RGB") {
-    PngSpec spec{{.width{128}, .height{128}}};
+    PngSpec spec{{.width = 128, .height = 128}};
     PngWriter writer(spec);
     std::vector<std::uint8_t> row(spec.width * spec.channels, 0);
 
@@ -171,7 +171,7 @@ TEST_CASE("PNGWriter", "[iio][iio::png]") {
   }
 
   SECTION("RGBA") {
-    PngSpec spec{{.width{128}, .height{128}, .channels{4}}};
+    PngSpec spec{{.width = 128, .height = 128, .channels = 4}};
     PngWriter writer(spec);
     std::vector<std::uint8_t> row(spec.width * spec.channels, 0);
 

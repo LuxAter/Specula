@@ -14,7 +14,6 @@
 #define SPECULA_IIO_PNG_HPP_
 
 #include <png.h>
-#include <zlib.h>
 
 #include "spec.hpp"
 #include "writer.hpp"

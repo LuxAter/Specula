@@ -50,7 +50,7 @@ bool specula::iio::PngWriter::write_header() {
     default:
       LWARN("iio",
             "PNG images only support 1-4 channels, images with {} channels are "
-            "not support",
+            "not supported",
             _spec.channels);
       png_destroy_write_struct(&_ptr, &_info);
       return false;

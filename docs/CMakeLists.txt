@@ -1,4 +1,4 @@
-find_package(Doxygen QUIET)
+find_package(Doxygen REQUIRED dot)
 
 if(DOXYGEN_FOUND)
     file(GLOB_RECURSE HEADERS CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/include/specula/**/*")

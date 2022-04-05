@@ -107,6 +107,21 @@ class ImageWriter {
   std::string _ext;   ///< The extension of the file being written to
   FILE* _file = nullptr;  ///< The file pointer to the file being written to
 };
+
+class FullImageWriter : public ImageWriter {
+ public:
+  FullImageWriter(std::uint32_t width, std::uint32_t height,
+                  std::uint8_t channels = 3, std::uint8_t bytes = 8);
+  virtual ~FullImageWriter();
+
+  bool write_scanline(const void* data) override;
+
+ protected:
+  std::uint32_t _scanline_size = 0;
+  std::uint32_t _offset = 0;
+  void* _data = nullptr;
+};
+
 }  // namespace specula::iio
 
 #endif  // SPECULA_IIO_WRITER_HPP_

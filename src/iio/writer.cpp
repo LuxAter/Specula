@@ -33,3 +33,20 @@ bool specula::iio::ImageWriter::close() {
 
   return true;
 }
+
+specula::iio::FullImageWriter::FullImageWriter(std::uint32_t width,
+                                               std::uint32_t height,
+                                               std::uint8_t channels,
+                                               std::uint8_t bytes)
+    : ImageWriter(), _scanline_size{width * channels * (bytes / 8)} {
+  _data = reinterpret_cast<void*>(std::malloc(_scanline_size * height));
+}
+specula::iio::FullImageWriter::~FullImageWriter() {
+  if (_data != nullptr) free(_data);
+}
+
+bool specula::iio::FullImageWriter::write_scanline(const void* data) {
+  std::memcpy(_data + _offset, data, _scanline_size);
+  _offset += _scanline_size;
+  return true;
+}
